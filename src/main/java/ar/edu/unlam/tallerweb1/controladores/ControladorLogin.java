@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 
 @Controller
 public class ControladorLogin {
@@ -56,10 +57,16 @@ public class ControladorLogin {
 		return new ModelAndView("login", model);
 	}
 
+	
+	@Inject
+	ServicioReserva servicioReserva;
+	
 	// Escucha la URL /home por GET, y redirige a una vista.
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
 	public ModelAndView irAHome() {
-		return new ModelAndView("home");
+		ModelMap modelo = new ModelMap();
+		modelo.put("listaAutosDisponibles", servicioReserva.obtenerAutosDisponibles());
+		return new ModelAndView("home", modelo);
 	}
 
 	// Escucha la url /, y redirige a la URL /login, es lo mismo que si se invoca la url /login directamente.

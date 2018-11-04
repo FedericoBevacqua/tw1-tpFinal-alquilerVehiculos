@@ -12,7 +12,10 @@ public class Auto {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
 	
-	Boolean disponible;
+	String marca;
+	String nombre;
+	
+	Double precio;
 	
 	public Long getId() {
 		return id;
@@ -20,10 +23,24 @@ public class Auto {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Boolean getDisponible() {
-		return disponible;
+	public String getMarca() {
+		return marca;
 	}
-	public void setDisponible(Boolean disponible) {
-		this.disponible = disponible;
+	public void setMarca(String marca) {
+		this.marca = marca;
 	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public Double getPrecio() {
+		return precio;
+	}
+	public void setPrecio(Double precio) {
+		this.precio = precio;
+	}
+	
+
 }

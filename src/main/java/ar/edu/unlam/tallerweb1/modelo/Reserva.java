@@ -1,19 +1,16 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Reserva {
-//	Date fechaDesde;
-//	Date fechaHasta;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,6 +21,9 @@ public class Reserva {
 	
 	@ManyToOne
 	Usuario usuario;
+	
+	Date fechaDesde;
+	Date fechaHasta;
 
 	public Auto getAuto() {
 		return auto;
@@ -39,5 +39,29 @@ public class Reserva {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Date getFechaDesde() {
+		return fechaDesde;
+	}
+
+	public void setFechaDesde(Date fechaDesde) {
+		this.fechaDesde = fechaDesde;
+	}
+
+	public Date getFechaHasta() {
+		return fechaHasta;
+	}
+
+	public void setFechaHasta(Date fechaHasta) {
+		this.fechaHasta = fechaHasta;
 	}
 }

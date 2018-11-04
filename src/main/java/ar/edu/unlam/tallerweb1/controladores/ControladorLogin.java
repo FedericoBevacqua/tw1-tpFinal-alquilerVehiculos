@@ -5,9 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -23,7 +21,7 @@ public class ControladorLogin {
 	private ServicioLogin servicioLogin;
 
 	// Este metodo escucha la URL localhost:8080/NOMBRE_APP/login si la misma es invocada por metodo http GET
-	@RequestMapping("/login")
+	@GetMapping("/login")
 	public ModelAndView irALogin() {
 
 		ModelMap modelo = new ModelMap();
@@ -39,7 +37,7 @@ public class ControladorLogin {
 	// Este metodo escucha la URL validar-login siempre y cuando se invoque con metodo http POST
 	// El método recibe un objeto Usuario el que tiene los datos ingresados en el form correspondiente y se corresponde con el modelAttribute definido en el
 	// tag form:form
-	@RequestMapping(path = "/validar-login", method = RequestMethod.POST)
+	@PostMapping(path = "/validar-login")
 	public ModelAndView validarLogin(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request) {
 		ModelMap model = new ModelMap();
 
@@ -57,7 +55,7 @@ public class ControladorLogin {
 	}
 
 	// Escucha la url /, y redirige a la URL /login, es lo mismo que si se invoca la url /login directamente.
-	@RequestMapping(path = "/", method = RequestMethod.GET)
+	@GetMapping(path = "/")
 	public ModelAndView inicio() {
 		return new ModelAndView("redirect:/login");
 	}

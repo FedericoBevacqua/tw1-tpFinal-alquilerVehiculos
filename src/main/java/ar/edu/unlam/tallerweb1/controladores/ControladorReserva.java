@@ -6,10 +6,7 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
@@ -21,14 +18,14 @@ public class ControladorReserva {
 	@Inject
 	private ServicioReserva servicioReserva;
 	
-	@RequestMapping("/reserva-fecha")
+	@GetMapping("/reserva-fecha")
 	public ModelAndView irAReservaFecha() {
 		ModelMap modelo = new ModelMap();
 		modelo.put("busqueda", new Busqueda());
 		return new ModelAndView("reserva-fecha", modelo);
 	}
 	
-	@RequestMapping(path = "/reserva-lista-autos", method = RequestMethod.POST)
+	@PostMapping(path = "/reserva-lista-autos")
 	public ModelAndView irAReservaListaAutos(@ModelAttribute("busqueda") Busqueda busqueda ) {
 
 		ModelMap modelo = new ModelMap();
@@ -38,7 +35,7 @@ public class ControladorReserva {
 		return new ModelAndView("reserva-lista-autos", modelo);
 	}
 	
-	@RequestMapping("/reservar-auto")
+	@PostMapping("/reservar-auto")
 	public ModelAndView reservarAuto(
 			@RequestParam("fechaDesde") @DateTimeFormat(pattern = "yyyy-MM-dd")Date fechaDesde,
 			@RequestParam("fechaHasta") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta, 

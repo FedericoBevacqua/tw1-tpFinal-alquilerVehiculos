@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,13 +19,24 @@ public class ServicioReservaImpl implements ServicioReserva {
 	@Inject
 	private ReservaDao reservaDao;
 	
+	@Inject
+	private ServicioAuto servicioAuto;
+	
 	@Override
-	public List<Auto> obtenerAutosDisponibles() {
-		return reservaDao.obtenerAutosDisponibles();
+	public List<Auto> obtenerAutosDisponibles(Date fechaDesde, Date fechaHasta) {
+		//TODO: Agregar validacion Date
+		return reservaDao.obtenerAutosDisponibles(fechaDesde, fechaHasta);
 	}
 
 	@Override
-	public boolean reservarAuto(Reserva reserva) {
+	public Long reservarAuto(Date fechaDesde, Date fechaHasta, Long autoId) {
+		Reserva reserva = new Reserva();
+		reserva.setFechaDesde(fechaDesde);
+		reserva.setFechaHasta(fechaHasta);
+	
+		Auto auto = servicioAuto.obtenerAuto(autoId);
+		reserva.setAuto(auto);
+		
 		return reservaDao.reservarAuto(reserva);
 	}
 

@@ -7,6 +7,8 @@
 						http://www.springframework.org/schema/mvc
 						http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 
+    <mvc:default-servlet-handler/>
+
     <!--Configuracion para indicarle al MVC de spring como resolver las vistas-->
     <bean id="viewResolver"
         class="org.springframework.web.servlet.view.UrlBasedViewResolver">

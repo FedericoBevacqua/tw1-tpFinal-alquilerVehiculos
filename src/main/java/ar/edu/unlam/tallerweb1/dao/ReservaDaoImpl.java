@@ -1,56 +1,48 @@
 package ar.edu.unlam.tallerweb1.dao;
 
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.inject.Inject;
-
+import ar.edu.unlam.tallerweb1.modelo.Auto;
+import ar.edu.unlam.tallerweb1.modelo.Reserva;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import ar.edu.unlam.tallerweb1.modelo.Auto;
-import ar.edu.unlam.tallerweb1.modelo.Reserva;
+import javax.inject.Inject;
+import java.util.Date;
+import java.util.List;
 
 @Repository("reservaDao")
 public class ReservaDaoImpl implements ReservaDao {
 
-	@Inject
+    @Inject
     private SessionFactory sessionFactory;
-	
-	@Override
-	public List<Auto> obtenerAutosDisponibles(Date fechaDesde, Date fechaHasta) {
-		final Session session = sessionFactory.getCurrentSession();
-		
-		List<Reserva> reservas = session.createCriteria(Reserva.class)
-				.add(Restrictions.or(
-						Restrictions.between("fechaDesde", fechaDesde, fechaHasta),
-						Restrictions.between("fechaHasta", fechaDesde, fechaHasta)
-						)
-				)
-				.list();
-		
-		List<Auto> autosReservados = reservas.stream()
-							.map(Reserva::getAuto)
-							.collect(Collectors.toList());
-		
-		List<Auto> autos = session.createCriteria(Auto.class)
-							.list();
-		
-		List<Auto> autosDisponibles = autos.stream()
-				.filter(a -> !autosReservados.contains(a))
-				.collect(Collectors.toList());
-		
-		return autosDisponibles;
-	}
 
-	@Override
-	public Long reservarAuto(Reserva reserva) {
-		final Session session = sessionFactory.getCurrentSession();
-		reserva.setId(null);
-		return (Long) session.save(reserva);
-	}
+    @Override
+    public List<Auto> obtenerAutosDisponibles(Date fechaDesde, Date fechaHasta) {
+        final Session session = sessionFactory.getCurrentSession();
+
+        DetachedCriteria autosReservados = DetachedCriteria.forClass(Reserva.class)
+                .add(Restrictions.or(
+                        Restrictions.between("fechaDesde", fechaDesde, fechaHasta),
+                        Restrictions.between("fechaHasta", fechaDesde, fechaHasta)
+                ))
+                .setProjection(Projections.property("auto"));
+
+        List<Auto> autosDisponibles = session
+                .createCriteria(Auto.class)
+                .add(Property.forName("id").notIn(autosReservados))
+                .list();
+
+        return autosDisponibles;
+    }
+
+    @Override
+    public Long reservarAuto(Reserva reserva) {
+        final Session session = sessionFactory.getCurrentSession();
+        return (Long) session.save(reserva);
+    }
 
 }

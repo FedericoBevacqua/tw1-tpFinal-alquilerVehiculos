@@ -25,17 +25,15 @@ public class ReservaDaoImpl implements ReservaDao {
 		final Session session = sessionFactory.getCurrentSession();
 		
 		List<Reserva> reservas = session.createCriteria(Reserva.class)
-				.add(Restrictions.between("fechaDesde", fechaDesde, fechaHasta))
-				.add(Restrictions.between("fechaHasta", fechaDesde, fechaHasta))
+				.add(Restrictions.or(
+						Restrictions.between("fechaDesde", fechaDesde, fechaHasta),
+						Restrictions.between("fechaHasta", fechaDesde, fechaHasta)
+						)
+				)
 				.list();
 		
-//		List<Reserva> reservas = session.createCriteria(Reserva.class)
-//				.add(Restrictions.ge("fechaDesde", fechaDesde))
-//				.add(Restrictions.le("fechaHasta", fechaHasta))
-//				.list();
-		
 		List<Auto> autosReservados = reservas.stream()
-							.map(r -> r.getAuto())
+							.map(Reserva::getAuto)
 							.collect(Collectors.toList());
 		
 		List<Auto> autos = session.createCriteria(Auto.class)

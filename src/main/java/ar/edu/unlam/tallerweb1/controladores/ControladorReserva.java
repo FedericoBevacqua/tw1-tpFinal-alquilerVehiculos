@@ -37,8 +37,8 @@ public class ControladorReserva {
 	
 	@PostMapping("/reservar-auto")
 	public ModelAndView reservarAuto(
-			@RequestParam("fechaDesde") @DateTimeFormat(pattern = "yyyy-MM-dd")Date fechaDesde,
-			@RequestParam("fechaHasta") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta, 
+			@RequestParam("fechaDesde") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaDesde,
+			@RequestParam("fechaHasta") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaHasta,
 			@RequestParam("autoId") Long autoId) {
 
 		ModelMap modelo = new ModelMap();

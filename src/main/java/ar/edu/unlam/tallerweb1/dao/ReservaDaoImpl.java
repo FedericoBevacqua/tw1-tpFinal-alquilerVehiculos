@@ -1,6 +1,8 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -11,7 +13,6 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Auto;
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 @Repository("reservaDao")
 public class ReservaDaoImpl implements ReservaDao {
@@ -20,33 +21,38 @@ public class ReservaDaoImpl implements ReservaDao {
     private SessionFactory sessionFactory;
 	
 	@Override
-	public List<Auto> obtenerAutosDisponibles() {
+	public List<Auto> obtenerAutosDisponibles(Date fechaDesde, Date fechaHasta) {
 		final Session session = sessionFactory.getCurrentSession();
-		List<Auto> resultado;
-		resultado = session.createCriteria(Auto.class)
-				.add(Restrictions.eq("disponible", true))
+		
+		List<Reserva> reservas = session.createCriteria(Reserva.class)
+				.add(Restrictions.between("fechaDesde", fechaDesde, fechaHasta))
+				.add(Restrictions.between("fechaHasta", fechaDesde, fechaHasta))
 				.list();
-		return resultado;
+		
+//		List<Reserva> reservas = session.createCriteria(Reserva.class)
+//				.add(Restrictions.ge("fechaDesde", fechaDesde))
+//				.add(Restrictions.le("fechaHasta", fechaHasta))
+//				.list();
+		
+		List<Auto> autosReservados = reservas.stream()
+							.map(r -> r.getAuto())
+							.collect(Collectors.toList());
+		
+		List<Auto> autos = session.createCriteria(Auto.class)
+							.list();
+		
+		List<Auto> autosDisponibles = autos.stream()
+				.filter(a -> !autosReservados.contains(a))
+				.collect(Collectors.toList());
+		
+		return autosDisponibles;
 	}
 
 	@Override
-	public boolean reservarAuto(Reserva reserva) {
+	public Long reservarAuto(Reserva reserva) {
 		final Session session = sessionFactory.getCurrentSession();
-		Auto autoAReservar;
-		
-		autoAReservar = (Auto) session.createCriteria(Auto.class)
-				.add(Restrictions.eq("id", reserva.getAuto().getId()))
-				.uniqueResult();
-		
-		if (autoAReservar == null) {
-			return false;
-		}
-		
-		autoAReservar.setDisponible(false);
-		session.update(autoAReservar);
-		
-		session.save(reserva);
-		return true;
+		reserva.setId(null);
+		return (Long) session.save(reserva);
 	}
 
 }

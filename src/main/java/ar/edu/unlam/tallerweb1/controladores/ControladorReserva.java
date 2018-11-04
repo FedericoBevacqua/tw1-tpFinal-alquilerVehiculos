@@ -1,10 +1,8 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.util.Date;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-
+import ar.edu.unlam.tallerweb1.modelo.Busqueda;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.modelo.Busqueda;
-import ar.edu.unlam.tallerweb1.modelo.Reserva;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
+import javax.inject.Inject;
+import java.util.Date;
 
 @Controller
 public class ControladorReserva {

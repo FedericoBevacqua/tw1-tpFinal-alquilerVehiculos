@@ -11,7 +11,7 @@
 			
 			<a class="btn btn-primary" role="button" href="${pageContext.request.contextPath}/reserva-fecha">Ir a Reservas</a>
 			<a class="btn btn-primary" role="button" href="${pageContext.request.contextPath}/entrega-lista-autos">Ir a Entregas</a>
-			<a class="btn btn-primary" role="button" href="${pageContext.request.contextPath}/devolucion-auto">Ir a Devoluciones</a>
+			<a class="btn btn-primary" role="button" href="${pageContext.request.contextPath}/devolucion-lista-reservas">Ir a Devoluciones</a>
 
 		</div>
 		<!-- Placed at the end of the document so the pages load faster -->

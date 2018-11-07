@@ -10,12 +10,12 @@ public class Auto {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
+	private Long id;
 	
-	String marca;
-	String nombre;
+	private String marca;
+	private String nombre;
 	
-	Double precio;
+	private Double precio;
 	
 	public Long getId() {
 		return id;

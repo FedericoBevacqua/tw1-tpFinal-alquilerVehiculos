@@ -45,4 +45,12 @@ public class ReservaDaoImpl implements ReservaDao {
         return (Long) session.save(reserva);
     }
 
+	@Override
+	public Reserva obtenerReserva(Long id) {
+		final Session session = sessionFactory.getCurrentSession();
+		return (Reserva) session.createCriteria(Reserva.class)
+				.add(Restrictions.eq("id", id))
+				.uniqueResult();
+	}
+
 }

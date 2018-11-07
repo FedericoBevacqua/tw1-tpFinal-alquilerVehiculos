@@ -40,4 +40,9 @@ public class ServicioReservaImpl implements ServicioReserva {
 		return reservaDao.reservarAuto(reserva);
 	}
 
+	@Override
+	public Reserva obtenerReserva(Long id) {
+		return reservaDao.obtenerReserva(id);
+	}
+
 }

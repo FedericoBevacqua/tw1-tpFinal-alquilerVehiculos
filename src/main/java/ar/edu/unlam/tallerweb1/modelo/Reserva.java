@@ -8,22 +8,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Reserva {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
+	private Long id;
 	
 	@ManyToOne
-	Auto auto;
+	private Auto auto;
 	
 	@ManyToOne
-	Usuario usuario;
+	private Usuario usuario;
 	
-	Date fechaDesde;
-	Date fechaHasta;
+	private Date fechaDesde;
+	private Date fechaHasta;
 
 	public Auto getAuto() {
 		return auto;
@@ -64,4 +65,5 @@ public class Reserva {
 	public void setFechaHasta(Date fechaHasta) {
 		this.fechaHasta = fechaHasta;
 	}
+	
 }

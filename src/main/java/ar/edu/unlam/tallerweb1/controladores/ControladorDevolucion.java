@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Devolucion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioDevolucion;
 
@@ -42,7 +43,15 @@ public class ControladorDevolucion {
 		
 		Long devolucionId = servicioDevolucion.devolverAuto(reservaId);
 		
+		//TODO: Verificar Obtener precioExtra Devolucion
+		Devolucion devolucion = servicioDevolucion.obtenerDevolucion(devolucionId);
+		Double precioExtra = devolucion.getPrecioExtra();
+		
+		
 		modelo.put("devolucionId", devolucionId);
+		
+		modelo.put("precioExtra",precioExtra);
+		
 		// Se va a la vista login (el nombre completo de la lista se resuelve utilizando el view resolver definido en el archivo spring-servlet.xml)
 		// y se envian los datos a la misma  dentro del modelo
 		return new ModelAndView("devolucion-resultado", modelo);

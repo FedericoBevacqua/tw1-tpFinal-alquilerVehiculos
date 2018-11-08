@@ -9,10 +9,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Entrega;
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 @Repository("entregaDao")
 public class EntregaDaoImpl implements EntregaDao {
@@ -47,5 +49,14 @@ public class EntregaDaoImpl implements EntregaDao {
 		
 		final Session session = sessionFactory.getCurrentSession();
         return (Long) session.save(entrega);
+	}
+
+	@Override
+	public Entrega obtenerEntrega(Long reservaId) {
+		
+		final Session session = sessionFactory.getCurrentSession();
+		return (Entrega) session.createCriteria(Entrega.class)
+				.add(Restrictions.eq("id",reservaId))
+				.uniqueResult(); 
 	}
 }

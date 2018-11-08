@@ -8,5 +8,7 @@ import ar.edu.unlam.tallerweb1.modelo.Reserva;
 public interface EntregaDao {
 	List<Reserva> obtenerReservasPendientes();
 
-	Long entregarAuto(Entrega entrega); 
+	Long entregarAuto(Entrega entrega);
+	
+	Entrega obtenerEntrega(Long reservaId);
 }

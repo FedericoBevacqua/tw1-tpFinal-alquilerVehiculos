@@ -35,6 +35,7 @@
 				</label>
 			</div>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sesión</button>
+			<a class="btn btn-lg btn-outline-success btn-block" role="button" href="${pageContext.request.contextPath}/registro">Registrarse</a>
 			<p class="mt-5 mb-3 text-muted">&copy; 2018</p>
 
 			<%-- Bloque que es visible si el elemento error no está vacío --%>

@@ -33,17 +33,34 @@
 										<td><c:out value="${auto.nombre}" /></td>
 										<td><c:out value="${auto.precio}" /></td>
 										<td>
-											<form action="reservar-auto" method="POST">
+											<form action="agregar-caracteristicas" method="POST">
 												<input name="fechaDesde" value="${busqueda.fechaDesde}" type="hidden"/>
 											 	<input name="fechaHasta" value="${busqueda.fechaHasta}" type="hidden"/>
-											 	<input name="autoId" value="${auto.id}" type="hidden"/>
-												<button class="btn btn-lg btn-primary btn-block" type="submit">Reservar</button>
+											 	
+											
+											 	 	<input name="precio" value="${auto.precio}" type="hidden"/>
+											 	 	
+								
+											 	 	
+								<label><input type="checkbox" name="seguro" value="true"> Seguro por daños</label><br>
+								<label><input type="checkbox"  name="tanque"value="true"> Tanque lleno</label><br>
+								<label><input type="checkbox"  name="chofer"value="true"> Con chofer</label><br>
+									<button class="btn btn-lg btn-primary btn-block" type="submit">Agregar</button>
+									
+												
+						
 											</form>
 										</td>
+												
+							
+								
 									</tr>
+				
 								</c:forEach>
 								</tbody>
 								</table>
+								
+				
 			
 		</div>
 		<!-- Placed at the end of the document so the pages load faster -->

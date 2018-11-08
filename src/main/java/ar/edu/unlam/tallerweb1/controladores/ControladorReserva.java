@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import ar.edu.unlam.tallerweb1.modelo.Auto;
 import ar.edu.unlam.tallerweb1.modelo.Busqueda;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
@@ -21,9 +22,31 @@ public class ControladorReserva {
 	@GetMapping("/reserva-fecha")
 	public ModelAndView irAReservaFecha() {
 		ModelMap modelo = new ModelMap();
+		
 		modelo.put("busqueda", new Busqueda());
 		return new ModelAndView("reserva-fecha", modelo);
 	}
+	
+	
+	@PostMapping(path = "/agregar-caracteristicas")
+	public ModelAndView agregarCaracteristicas(
+			@RequestParam("seguro") Boolean seguro,
+			@RequestParam("tanque") Boolean tanque,
+			@RequestParam("chofer") Boolean chofer,
+			@RequestParam("precio") Double precio) {
+
+		ModelMap modelo = new ModelMap();
+
+
+		
+		
+		modelo.put("nuevoPrecio", servicioReserva.precioActualizado(6000.00, true,false,true));
+		return new ModelAndView("vista", modelo);
+	}
+	
+	
+	
+	
 	
 	@PostMapping(path = "/reserva-lista-autos")
 	public ModelAndView irAReservaListaAutos(@ModelAttribute("busqueda") Busqueda busqueda ) {

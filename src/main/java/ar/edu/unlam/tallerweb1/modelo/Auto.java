@@ -16,6 +16,27 @@ public class Auto {
 	String nombre;
 	
 	Double precio;
+	public Boolean getSeguro() {
+		return seguro;
+	}
+	public void setSeguro(Boolean seguro) {
+		this.seguro = seguro;
+	}
+	public Boolean getConChofer() {
+		return conChofer;
+	}
+	public void setConChofer(Boolean conChofer) {
+		this.conChofer = conChofer;
+	}
+	public Boolean getTanqueLleno() {
+		return tanqueLleno;
+	}
+	public void setTanqueLleno(Boolean tanqueLleno) {
+		this.tanqueLleno = tanqueLleno;
+	}
+	Boolean seguro;
+	Boolean conChofer;
+	Boolean tanqueLleno;
 	
 	public Long getId() {
 		return id;

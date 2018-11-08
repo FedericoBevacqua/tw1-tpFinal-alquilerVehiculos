@@ -40,4 +40,12 @@ public class ServicioReservaImpl implements ServicioReserva {
 		return reservaDao.reservarAuto(reserva);
 	}
 
+	@Override
+	public Double precioActualizado(Double precio, Boolean seguro, Boolean chofer, Boolean tanque) {
+		// TODO Auto-generated method stub
+
+		return reservaDao.precioActualizado(precio, seguro, chofer, tanque);
+	}
+
+
 }

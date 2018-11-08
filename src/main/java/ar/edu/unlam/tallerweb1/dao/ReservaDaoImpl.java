@@ -45,4 +45,29 @@ public class ReservaDaoImpl implements ReservaDao {
         return (Long) session.save(reserva);
     }
 
+	@Override
+	public Double precioActualizado(Double precio, Boolean seguro, Boolean chofer, Boolean tanque) {
+	Double precioFinal = null;
+		
+		if(seguro==true)
+		{precioFinal=precio*1.5;}
+		
+		if(chofer==true) 
+		{ precioFinal=precio+3000;}
+		
+		
+		if(tanque==true)
+		{precioFinal=precio*1.2;}
+			
+			
+			
+	
+		
+		return precioFinal;
+		
+		
+	}
+
+
+
 }

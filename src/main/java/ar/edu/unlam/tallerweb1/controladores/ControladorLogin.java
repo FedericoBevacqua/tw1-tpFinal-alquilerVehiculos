@@ -37,7 +37,7 @@ public class ControladorLogin {
 	// Este metodo escucha la URL validar-login siempre y cuando se invoque con metodo http POST
 	// El método recibe un objeto Usuario el que tiene los datos ingresados en el form correspondiente y se corresponde con el modelAttribute definido en el
 	// tag form:form
-	@PostMapping(path = "/validar-login")
+	@PostMapping("/validar-login")
 	public ModelAndView validarLogin(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request) {
 		ModelMap model = new ModelMap();
 
@@ -54,8 +54,25 @@ public class ControladorLogin {
 		return new ModelAndView("login", model);
 	}
 
+	@GetMapping("/registro")
+	public ModelAndView irARegistro() {
+		ModelMap modelo = new ModelMap();
+		Usuario usuario = new Usuario();
+		modelo.put("usuario", usuario);
+		return new ModelAndView("registro", modelo);
+	}
+
+	@PostMapping("/registrar-usuario")
+	public ModelAndView registrarUsuario(@ModelAttribute("usuario") Usuario usuario) {
+		Long idUsuarioCreado = servicioLogin.registrarUsuario(usuario);
+		if (idUsuarioCreado != null) {
+			return new ModelAndView("redirect:/home");
+		}
+		return new ModelAndView("redirect:/login");
+	}
+
 	// Escucha la url /, y redirige a la URL /login, es lo mismo que si se invoca la url /login directamente.
-	@GetMapping(path = "/")
+	@GetMapping("/")
 	public ModelAndView inicio() {
 		return new ModelAndView("redirect:/login");
 	}

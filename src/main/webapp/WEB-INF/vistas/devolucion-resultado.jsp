@@ -8,7 +8,7 @@
 		<div class = "container">
 			<h1>Id Devolucion: ${devolucionId}</h1>
 			<br>
-			<!-- <h2>Precio Extra: ${precioExtra}</h2> -->
+			<h2>Precio Extra: ${precioExtra}</h2>
 			
 			<a class="btn btn-primary" role="button" href="${pageContext.request.contextPath}/home">Volver al Inicio</a>
 		</div>

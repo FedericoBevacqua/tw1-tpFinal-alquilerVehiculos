@@ -44,9 +44,9 @@ public class ServicioDevolucionImpl implements ServicioDevolucion {
 		
 		//TODO: Arreglar precioExtra
 		//TODO: Ver que hacer con fechaEntrega
-		/*Entrega entrega = servicioEntrega.obtenerEntrega(reservaId);
+		//Entrega entrega = servicioEntrega.obtenerEntrega(reservaId);
 		
-		Date fechaEntrega = entrega.getFechaEntrega();
+		//Date fechaEntrega = entrega.getFechaEntrega();
 		Date fechaHasta = reserva.getFechaHasta();
 		Date fechaActual = new java.sql.Date(date.getTime());
 		
@@ -61,7 +61,7 @@ public class ServicioDevolucionImpl implements ServicioDevolucion {
 			Double precioExtra= 1500D;
 			devolucion.setPrecioExtra(precioExtra);
 		}
-*/
+
 		return devolucionDao.devolverAuto(devolucion);
 	}
 

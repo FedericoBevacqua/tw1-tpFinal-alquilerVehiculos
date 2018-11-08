@@ -19,11 +19,17 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 public class ServicioLoginImpl implements ServicioLogin {
 
 	@Inject
-	private UsuarioDao servicioLoginDao;
+	private UsuarioDao usuarioDao;
 
 	@Override
 	public Usuario consultarUsuario (Usuario usuario) {
-		return servicioLoginDao.consultarUsuario(usuario);
+		return usuarioDao.consultarUsuario(usuario);
+	}
+
+	@Override
+	public Long registrarUsuario(Usuario usuario) {
+		// TODO: Ver si ya existe un usuario con el mismo e-mail
+		return usuarioDao.registrarUsuario(usuario);
 	}
 
 }

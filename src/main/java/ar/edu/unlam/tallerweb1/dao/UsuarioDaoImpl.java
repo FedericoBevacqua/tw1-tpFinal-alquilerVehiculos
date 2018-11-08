@@ -32,4 +32,13 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				.uniqueResult();
 	}
 
+	@Override
+	public Long registrarUsuario(Usuario usuario) {
+		final Session session = sessionFactory.getCurrentSession();
+
+		// Por defecto el rol es cliente
+		usuario.setRol("cliente");
+		return (Long) session.save(usuario);
+	}
+
 }

@@ -7,31 +7,31 @@
 	</head>
 	<body>
 		<div class = "container">
-			<h1>Entregas de Vehiculos</h1>
+			<h1>Devoluciones de Vehiculos</h1>
 			
 			<table class="table table-bordered">
 							<thead>
 								<tr>
-									<th scope="col">Id Reserva</th>
-									<th scope="col">Fecha Desde</th>
-									<th scope="col">Fecha Hasta</th>
+									<th scope="col">Id Entrega</th>
+									<th scope="col">Fecha Entrega</th>
+									<th scope="col">Fecha Hasta Reserva</th>
 									<th scope="col">Auto Id</th>
-									<th scope="col">Entregar</th>
+									<th scope="col">Devolucion</th>
 							
 								</tr>
 							</thead>
 							<tbody>
-			<c:forEach var="reserva" items="${listaReservasPendientes}">
+			<c:forEach var="entrega" items="${listaReservasEntregadas}">
 
 									<tr>
-										<td><c:out value="${reserva.id}" /></td>	
-										<td><c:out value="${reserva.fechaDesde}" /></td>
-										<td><c:out value="${reserva.fechaHasta}" /></td>
-										<td><c:out value="${reserva.auto.id}" /></td>
+										<td><c:out value="${entrega.id}" /></td>	
+										<td><c:out value="${entrega.fechaEntrega}" /></td>
+										<td><c:out value="${entrega.reserva.fechaHasta}" /></td>
+										<td><c:out value="${entrega.reserva.auto.id}" /></td>
 										<td>
-											<form action="entregar-auto" method="POST">
-												<input name="reservaId" value="${reserva.id}" type="hidden"/>
-												<button class="btn btn-lg btn-primary btn-block" type="submit">Entregar</button>
+											<form action="devolver-auto" method="POST">
+												<input name="reservaId" value="${entrega.reserva.id}" type="hidden"/>
+												<button class="btn btn-lg btn-primary btn-block" type="submit">Devolver</button>
 											</form>
 										</td>
 									</tr>

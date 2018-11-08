@@ -24,16 +24,16 @@ public class ReservaDaoImpl implements ReservaDao {
     public List<Auto> obtenerAutosDisponibles(Date fechaDesde, Date fechaHasta) {
         final Session session = sessionFactory.getCurrentSession();
 
-        DetachedCriteria autosReservados = DetachedCriteria.forClass(Reserva.class)
+        DetachedCriteria autosReservados = DetachedCriteria.forClass(Reserva.class)//Trae todas las Reservas
                 .add(Restrictions.or(
                         Restrictions.between("fechaDesde", fechaDesde, fechaHasta),
                         Restrictions.between("fechaHasta", fechaDesde, fechaHasta)
-                ))
-                .setProjection(Projections.property("auto"));
+                ))//Filtra: Trae reservas solo entre esas fechas pedidas
+                .setProjection(Projections.property("auto")); //Solo se queda con el atributo auto (id) de reserva
 
         List<Auto> autosDisponibles = session
                 .createCriteria(Auto.class)
-                .add(Property.forName("id").notIn(autosReservados))
+                .add(Property.forName("id").notIn(autosReservados))//Trae todos los autos y filtra que no esten en una reserva de las fechas pedidas anteriormente
                 .list();
 
         return autosDisponibles;

@@ -40,4 +40,9 @@ public class ServicioEntregaImpl implements ServicioEntrega {
 		
 		return entregaDao.entregarAuto(entrega);
 	}
+
+	@Override
+	public Entrega obtenerEntrega(Long reservaId) {
+		return entregaDao.obtenerEntrega(reservaId);
+	}
 }

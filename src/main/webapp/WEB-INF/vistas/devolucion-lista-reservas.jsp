@@ -12,7 +12,7 @@
 			<table class="table table-bordered">
 							<thead>
 								<tr>
-									<th scope="col">Id Reserva</th>
+									<th scope="col">Id Entrega</th>
 									<th scope="col">Fecha Entrega</th>
 									<th scope="col">Fecha Hasta Reserva</th>
 									<th scope="col">Auto Id</th>

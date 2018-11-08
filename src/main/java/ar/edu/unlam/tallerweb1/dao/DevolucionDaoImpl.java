@@ -26,11 +26,11 @@ public class DevolucionDaoImpl implements DevolucionDao {
 
 		final Session session = sessionFactory.getCurrentSession();
 
-		DetachedCriteria devolucionesRealizadas = DetachedCriteria.forClass(Devolucion.class)
-				.setProjection(Projections.property("reserva"));
+		DetachedCriteria devolucionesRealizadas = DetachedCriteria.forClass(Devolucion.class)// Trae todas las Devoluciones
+				.setProjection(Projections.property("reserva")); // Solo trae el atributo reserva (el ID) de Devoluciones
 
 		List<Reserva> listaEntregasRealizadas = session.createCriteria(Entrega.class)
-				.add(Property.forName("reserva").notIn(devolucionesRealizadas))
+				.add(Property.forName("reserva").notIn(devolucionesRealizadas))//Filtra: Trae todas las entregas que no tengan el idReserva de la lista Devolucion
 				.list();
 
 		return listaEntregasRealizadas;

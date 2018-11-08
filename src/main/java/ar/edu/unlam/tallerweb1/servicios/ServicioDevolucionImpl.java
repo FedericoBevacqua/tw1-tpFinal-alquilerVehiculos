@@ -61,4 +61,9 @@ public class ServicioDevolucionImpl implements ServicioDevolucion {
 
 		return devolucionDao.devolverAuto(devolucion);
 	}
+
+	@Override
+	public Devolucion obtenerDevolucion(Long id) {
+		return devolucionDao.obtenerDevolucion(id);
+	}
 }

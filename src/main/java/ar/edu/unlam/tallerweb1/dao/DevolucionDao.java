@@ -9,4 +9,6 @@ public interface DevolucionDao {
 	List<Reserva> obtenerReservasEntregadas();
 
 	Long devolverAuto(Devolucion devolucion); 
+	
+	Devolucion obtenerDevolucion(Long id);
 }

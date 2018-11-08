@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Devolucion;
@@ -41,5 +42,13 @@ public class DevolucionDaoImpl implements DevolucionDao {
 		
 		final Session session = sessionFactory.getCurrentSession();
         return (Long) session.save(devolucion);
+	}
+
+	@Override
+	public Devolucion obtenerDevolucion(Long id) {
+		final Session session = sessionFactory.getCurrentSession();
+		return (Devolucion) session.createCriteria(Devolucion.class)
+				.add(Restrictions.eq("id", id))
+				.uniqueResult();
 	}
 }

@@ -23,18 +23,16 @@ public class DevolucionDaoImpl implements DevolucionDao {
 
 	@Override
 	public List<Reserva> obtenerReservasEntregadas() {
-		
-		 final Session session = sessionFactory.getCurrentSession();
-		 
-        DetachedCriteria devolucionesRealizadas = DetachedCriteria.forClass(Devolucion.class)
-                .setProjection(Projections.property("reserva"));
 
-        List<Reserva> listaEntregasRealizadas = session
-                .createCriteria(Entrega.class)
-                .add(Property.forName("id").notIn(devolucionesRealizadas))
-                
-                .list();
-		 
+		final Session session = sessionFactory.getCurrentSession();
+
+		DetachedCriteria devolucionesRealizadas = DetachedCriteria.forClass(Devolucion.class)
+				.setProjection(Projections.property("reserva"));
+
+		List<Reserva> listaEntregasRealizadas = session.createCriteria(Entrega.class)
+				.add(Property.forName("reserva").notIn(devolucionesRealizadas))
+				.list();
+
 		return listaEntregasRealizadas;
 	}
 

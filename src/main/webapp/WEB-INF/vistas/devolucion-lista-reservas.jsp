@@ -21,7 +21,7 @@
 								</tr>
 							</thead>
 							<tbody>
-			<c:forEach var="entrega" items="${listaEntregasRealizadas}">
+			<c:forEach var="entrega" items="${listaReservasEntregadas}">
 
 									<tr>
 										<td><c:out value="${entrega.id}" /></td>	

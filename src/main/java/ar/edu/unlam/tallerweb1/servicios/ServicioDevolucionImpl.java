@@ -42,8 +42,9 @@ public class ServicioDevolucionImpl implements ServicioDevolucion {
 		Reserva reserva = servicioReserva.obtenerReserva(reservaId);
 		devolucion.setReserva(reserva);
 		
+		//TODO: Arreglar precioExtra
 		//TODO: Ver que hacer con fechaEntrega
-		Entrega entrega = servicioEntrega.obtenerEntrega(reservaId);
+		/*Entrega entrega = servicioEntrega.obtenerEntrega(reservaId);
 		
 		Date fechaEntrega = entrega.getFechaEntrega();
 		Date fechaHasta = reserva.getFechaHasta();
@@ -52,13 +53,15 @@ public class ServicioDevolucionImpl implements ServicioDevolucion {
 		//TODO: Hacer Por cada dia extra se le cobrara mas monto y no uno fijo solamente
 		if(fechaHasta.compareTo(fechaActual)>0 ) {
 			//System.out.println("fechaHasta is after fechaActual");
+			Double precioExtra= 0D;
+			devolucion.setPrecioExtra(precioExtra);
 		}else {
 			//Precio extra al pasarse la fecha de entrega.
 			//System.out.println("fechaHasta is before fechaActual");
 			Double precioExtra= 1500D;
 			devolucion.setPrecioExtra(precioExtra);
 		}
-
+*/
 		return devolucionDao.devolverAuto(devolucion);
 	}
 

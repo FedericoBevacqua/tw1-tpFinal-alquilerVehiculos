@@ -8,7 +8,7 @@
 		<div class = "container">
 			<h1>Id Devolucion: ${devolucionId}</h1>
 			<br>
-			<h2>Precio Extra: </h2>
+			<!-- <h2>Precio Extra: ${precioExtra}</h2> -->
 			
 		</div>
 		<!-- Placed at the end of the document so the pages load faster -->

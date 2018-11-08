@@ -8,6 +8,7 @@
 		<div class = "container">
 			<h1>Id Entrega: ${entregaId}</h1>
 			
+			<a class="btn btn-primary" role="button" href="${pageContext.request.contextPath}/home">Volver al Inicio</a>
 		</div>
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>

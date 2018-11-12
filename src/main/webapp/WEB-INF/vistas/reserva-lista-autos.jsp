@@ -12,18 +12,21 @@
 			<div>
 			${busqueda.fechaDesde} - ${busqueda.fechaHasta}
 			</div>
-		Filtrar por:<br>	<br>
+			
+
+		Filtrar por:<br>	
 	Marcas<br>
-	<a class="btn btn-primary" href="hola?marca=Ford" role="button">Ford</a><br>
-	<a class="btn btn-primary" href="hola?marca=Chevrolet" role="button">Chevrolet</a><br>
-	<a class="btn btn-primary" href="hola?marca=Toyota" role="button">Toyota</a><br>
-	<a class="btn btn-primary" href="hola?marca=Audi" role="button">Audi</a><br>
-	<a class="btn btn-primary" href="hola?marca=BMW" role="button">BMW</a><br>
-	
-			
-			
-			
-			<table class="table table-bordered">
+
+		  <div class="row">
+    <div class="col-sm-4" >
+    	<a class="btn btn-link" href="hola?marca=Ford" role="button">Ford</a><br>
+	<a class="btn btn-link" href="hola?marca=Chevrolet" role="button">Chevrolet</a><br>
+	<a class="btn btn-link" href="hola?marca=Toyota" role="button">Toyota</a><br>
+	<a class="btn btn-link" href="hola?marca=Audi" role="button">Audi</a><br>
+	<a class="btn btn-link" href="hola?marca=BMW" role="button">BMW</a><br>
+    </div>
+     <div  >
+    			<table class="table table-bordered">
 							<thead>
 								<tr>
 									<th scope="col">id</th>
@@ -54,6 +57,13 @@
 								</c:forEach>
 								</tbody>
 								</table>
+								    </div>
+    
+
+
+
+
+
 			
 		</div>
 		<!-- Placed at the end of the document so the pages load faster -->

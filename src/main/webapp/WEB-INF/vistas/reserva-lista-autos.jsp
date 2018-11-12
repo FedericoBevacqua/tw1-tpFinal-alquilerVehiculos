@@ -12,6 +12,16 @@
 			<div>
 			${busqueda.fechaDesde} - ${busqueda.fechaHasta}
 			</div>
+		Filtrar por:<br>	<br>
+	Marcas<br>
+	<a class="btn btn-primary" href="hola?marca=Ford" role="button">Ford</a><br>
+	<a class="btn btn-primary" href="hola?marca=Chevrolet" role="button">Chevrolet</a><br>
+	<a class="btn btn-primary" href="hola?marca=Toyota" role="button">Toyota</a><br>
+	<a class="btn btn-primary" href="hola?marca=Audi" role="button">Audi</a><br>
+	<a class="btn btn-primary" href="hola?marca=BMW" role="button">BMW</a><br>
+	
+			
+			
 			
 			<table class="table table-bordered">
 							<thead>

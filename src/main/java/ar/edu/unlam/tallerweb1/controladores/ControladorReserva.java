@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.Busqueda;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioFiltros;
 import ar.edu.unlam.tallerweb1.servicios.ServicioReserva;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ public class ControladorReserva {
 	
 	@Inject
 	private ServicioReserva servicioReserva;
+	
+	@Inject
+	private ServicioFiltros servicioFiltros;
 	
 	@GetMapping("/reserva-fecha")
 	public ModelAndView irAReservaFecha() {
@@ -54,5 +58,15 @@ public class ControladorReserva {
 		// Se va a la vista login (el nombre completo de la lista se resuelve utilizando el view resolver definido en el archivo spring-servlet.xml)
 		// y se envian los datos a la misma  dentro del modelo
 		return new ModelAndView("reserva-resultado", modelo);
+	}
+	
+	
+	
+	@GetMapping("/hola")
+	public ModelAndView hola(
+			@RequestParam("marca") String marca) {
+		ModelMap modelo = new ModelMap();
+		modelo.put("filtroPorMarca",servicioFiltros.filtroPorMarca(marca) );
+		return new ModelAndView("hola", modelo);
 	}
 }

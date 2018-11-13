@@ -39,6 +39,22 @@ public class ControladorReserva {
 		return new ModelAndView("reserva-lista-autos", modelo);
 	}
 	
+	@GetMapping(path = "/reserva-lista-autos")
+	public ModelAndView irAReservaListaAutos(
+			@RequestParam("marca") String marca)  {
+
+		ModelMap modelo = new ModelMap();
+	
+		
+		modelo.put("filtroPorMarca",servicioFiltros.filtroPorMarca(marca) );
+		return new ModelAndView("reserva-lista-autos", modelo);
+		
+		
+	
+	
+	}
+	
+	
 	@PostMapping("/reservar-auto")
 	public ModelAndView reservarAuto(
 			@RequestParam("fechaDesde") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaDesde,
@@ -62,11 +78,4 @@ public class ControladorReserva {
 	
 	
 	
-	@GetMapping("/hola")
-	public ModelAndView hola(
-			@RequestParam("marca") String marca) {
-		ModelMap modelo = new ModelMap();
-		modelo.put("filtroPorMarca",servicioFiltros.filtroPorMarca(marca) );
-		return new ModelAndView("hola", modelo);
-	}
 }

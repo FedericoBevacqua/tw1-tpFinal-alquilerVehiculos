@@ -19,13 +19,22 @@
 
 		  <div class="row">
     <div class="col-sm-4" >
-    	<a class="btn btn-link" href="hola?marca=Ford" role="button">Ford</a><br>
-	<a class="btn btn-link" href="hola?marca=Chevrolet" role="button">Chevrolet</a><br>
-	<a class="btn btn-link" href="hola?marca=Toyota" role="button">Toyota</a><br>
-	<a class="btn btn-link" href="hola?marca=Audi" role="button">Audi</a><br>
-	<a class="btn btn-link" href="hola?marca=BMW" role="button">BMW</a><br>
+    	<a class="btn btn-link" href="reserva-lista-autos?marca=Ford" role="button">Ford</a><br>
+	<a class="btn btn-link" href="reserva-lista-autos?marca=Chevrolet" role="button">Chevrolet</a><br>
+	<a class="btn btn-link" href="reserva-lista-autos?marca=Toyota" role="button">Toyota</a><br>
+	<a class="btn btn-link" href="reserva-lista-autos?marca=Audi" role="button">Audi</a><br>
+	<a class="btn btn-link" href="reserva-lista-autos?marca=BMW" role="button">BMW</a><br>
     </div>
-     <div  >
+     <div>
+ 
+ <c:choose>
+    <c:when test="${empty filtroPorMarca}">
+     
+
+
+
+
+     
     			<table class="table table-bordered">
 							<thead>
 								<tr>
@@ -57,10 +66,56 @@
 								</c:forEach>
 								</tbody>
 								</table>
+								 
+								      
+								      
+								      
+								      
+								      </c:when>
+							    <c:when test="${ not empty filtroPorMarca}">
+								     
+    			<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th scope="col">id</th>
+									<th scope="col">Marca</th>
+									<th scope="col">Nombre</th>
+									<th scope="col">Precio</th>
+									<th scope="col">Reservar</th>
+							
+								</tr>
+							</thead>
+							<tbody>
+			<c:forEach var="auto" items="${filtroPorMarca}">
+
+									<tr>
+										<td><c:out value="${auto.id}" /></td>	
+										<td><c:out value="${auto.marca}" /></td>
+										<td><c:out value="${auto.nombre}" /></td>
+										<td><c:out value="${auto.precio}" /></td>
+										<td>
+											<form action="reservar-auto" method="POST">
+												<input name="fechaDesde" value="${busqueda.fechaDesde}" type="hidden"/>
+											 	<input name="fechaHasta" value="${busqueda.fechaHasta}" type="hidden"/>
+											 	<input name="autoId" value="${auto.id}" type="hidden"/>
+												<button class="btn btn-lg btn-primary btn-block" type="submit">Reservar</button>
+											</form>
+										</td>
+									</tr>
+								</c:forEach>
+								</tbody>
+								</table>
+
+    
+								      </c:when>
+
+   
+</c:choose>
 								    </div>
     
 
 
+     
 
 
 

@@ -12,5 +12,4 @@ public interface ReservaDao {
 	Long reservarAuto(Reserva reserva);
 	
 	Reserva obtenerReserva(Long id);
-
 }

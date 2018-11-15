@@ -22,7 +22,6 @@ public class FiltrosDaoImpl implements FiltrosDao{
 	public List<Auto> filtroPorMarca(String marca) {
 		final Session session = sessionFactory.getCurrentSession();
 		
-		
 		List<Auto> autosPorMarca=session.createCriteria(Auto.class)
 				.add(Restrictions.eq("marca",marca))
 				.list();
@@ -37,7 +36,5 @@ public class FiltrosDaoImpl implements FiltrosDao{
 				.list();
 		return menorPrecio ;
 	}
-
-
 
 }

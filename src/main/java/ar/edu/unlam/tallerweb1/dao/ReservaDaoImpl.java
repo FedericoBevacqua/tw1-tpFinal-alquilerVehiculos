@@ -52,6 +52,4 @@ public class ReservaDaoImpl implements ReservaDao {
 				.add(Restrictions.eq("id", id))
 				.uniqueResult();
 	}
-
-
 }

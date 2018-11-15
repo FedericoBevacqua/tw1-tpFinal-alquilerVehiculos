@@ -14,7 +14,6 @@ import ar.edu.unlam.tallerweb1.modelo.Auto;
 @Transactional
 public class ServicioFiltrosImpl implements ServicioFiltros {
 
-	
 	@Inject
 	private FiltrosDao filtrosDao;
 	@Override

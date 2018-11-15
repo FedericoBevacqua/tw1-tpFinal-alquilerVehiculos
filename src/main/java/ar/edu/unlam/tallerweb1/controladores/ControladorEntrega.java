@@ -28,9 +28,28 @@ public class ControladorEntrega {
 		return new ModelAndView("entrega-lista-autos", modelo);
 	}
 	
+	@PostMapping("/entregar-km-auto")
+	public ModelAndView irAEntregarAutoKm(
+			@RequestParam("reservaId") Long reservaId) {
+		
+		ModelMap modelo = new ModelMap();
+		// Se agrega al modelo un objeto del tipo Usuario con key 'usuario' para que el mismo sea asociado
+		// al model attribute del form que esta definido en la vista 'login'
+		//TODO: Corregir cuando este correcto el login
+		Usuario usuario = new Usuario();
+		
+		modelo.put("usuario", usuario);
+		
+		modelo.put("reservaId", reservaId);
+		// Se va a la vista login (el nombre completo de la lista se resuelve utilizando el view resolver definido en el archivo spring-servlet.xml)
+		// y se envian los datos a la misma  dentro del modelo
+		return new ModelAndView("entrega-km-auto", modelo);
+	}
+	
 	@PostMapping("/entregar-auto")
 	public ModelAndView reservarAuto(
-			@RequestParam("reservaId") Long reservaId) {
+			@RequestParam("reservaId") Long reservaId,
+			@RequestParam("kilometrajeActual") Long kilometrajeActual) {
 
 		ModelMap modelo = new ModelMap();
 		// Se agrega al modelo un objeto del tipo Usuario con key 'usuario' para que el mismo sea asociado
@@ -40,7 +59,7 @@ public class ControladorEntrega {
 		
 		modelo.put("usuario", usuario);
 		
-		Long entregaId = servicioEntrega.entregarAuto(reservaId);
+		Long entregaId = servicioEntrega.entregarAuto(reservaId, kilometrajeActual);
 		
 		modelo.put("entregaId", entregaId);
 		// Se va a la vista login (el nombre completo de la lista se resuelve utilizando el view resolver definido en el archivo spring-servlet.xml)

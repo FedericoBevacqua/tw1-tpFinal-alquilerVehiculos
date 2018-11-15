@@ -11,9 +11,10 @@
 			
 			<div>
 			${busqueda.fechaDesde} - ${busqueda.fechaHasta}
-			</div>
 			
+			</div>
 
+   		
 		Filtrar por:<br>	
 	Marcas<br>
 
@@ -23,13 +24,18 @@
 	<a class="btn btn-link" href="reserva-lista-autos?marca=Chevrolet" role="button">Chevrolet</a><br>
 	<a class="btn btn-link" href="reserva-lista-autos?marca=Toyota" role="button">Toyota</a><br>
 	<a class="btn btn-link" href="reserva-lista-autos?marca=Audi" role="button">Audi</a><br>
-	<a class="btn btn-link" href="reserva-lista-autos?marca=BMW" role="button">BMW</a><br>
+	<a class="btn btn-link" href="reserva-lista-autos?marca=BMW" role="button">BMW</a><br><br>
+	
+	    	<a class="btn btn-link" href="ordenar-por-menor-precio" role="button">Por menor precio</a><br>
     </div>
+    
+   
      <div>
  
  <c:choose>
     <c:when test="${empty filtroPorMarca}">
      
+		
 
 
 
@@ -73,7 +79,7 @@
 								      
 								      </c:when>
 							    <c:when test="${ not empty filtroPorMarca}">
-								     
+							    
     			<table class="table table-bordered">
 							<thead>
 								<tr>
@@ -120,7 +126,9 @@
 
 
 			
-		</div>
+		</div>	</div>
+		
+		
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
 		<script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>

@@ -7,4 +7,5 @@ import ar.edu.unlam.tallerweb1.modelo.Auto;
 public interface ServicioFiltros {
 	
 	List<Auto> filtroPorMarca(String marca);
+	List<Auto> OrdenarPorMenorPrecio();
 }

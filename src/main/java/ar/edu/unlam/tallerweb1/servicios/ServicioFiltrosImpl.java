@@ -22,5 +22,10 @@ public class ServicioFiltrosImpl implements ServicioFiltros {
 		// TODO Auto-generated method stub
 		return filtrosDao.filtroPorMarca(marca);
 	}
+	@Override
+	public List<Auto> OrdenarPorMenorPrecio() {
+	
+	 return filtrosDao.OrdenarPorMenorPrecio();
+	}
 
 }

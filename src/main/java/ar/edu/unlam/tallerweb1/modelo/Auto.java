@@ -16,6 +16,7 @@ public class Auto {
 	private String nombre;
 	
 	private Double precio;
+	private Long kilometrajeActual;
 	
 	public Long getId() {
 		return id;
@@ -41,6 +42,11 @@ public class Auto {
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
-	
+	public Long getKilometrajeActual() {
+		return kilometrajeActual;
+	}
+	public void setKilometrajeActual(Long kilometrajeActual) {
+		this.kilometrajeActual = kilometrajeActual;
+	}
 
 }

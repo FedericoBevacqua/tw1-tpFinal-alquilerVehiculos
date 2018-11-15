@@ -29,7 +29,7 @@
 										<td><c:out value="${reserva.fechaHasta}" /></td>
 										<td><c:out value="${reserva.auto.id}" /></td>
 										<td>
-											<form action="entregar-auto" method="POST">
+											<form action="entregar-km-auto" method="POST">
 												<input name="reservaId" value="${reserva.id}" type="hidden"/>
 												<button class="btn btn-lg btn-primary btn-block" type="submit">Entregar</button>
 											</form>

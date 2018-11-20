@@ -41,23 +41,28 @@ public class ControladorReserva {
 	
 	@GetMapping(path = "/reserva-lista-autos")
 	public ModelAndView irAReservaListaAutos(
-			@RequestParam("marca") String marca)  {
+			@RequestParam(value="marca",required=false) String marca,
+			@RequestParam(value="orden", defaultValue ="0"  ,required=false) Integer orden)  {
 
 		ModelMap modelo = new ModelMap();
 	
-		modelo.put("filtroPorMarca",servicioFiltros.filtroPorMarca(marca));
+		if(marca!=null)
+		{modelo.put("autosDisponibles",servicioFiltros.filtroPorMarca(marca));}
+		if(orden==1)
+		{
+	
+		modelo.put("autosDisponibles", servicioFiltros.OrdenarPorMenorPrecio());
+		
+		}
+		
 		return new ModelAndView("reserva-lista-autos", modelo);
 	
 	}
 	
-	@GetMapping(path = "/ordenar-por-menor-precio")
-	public ModelAndView ordenarPorMenorPrecio()  {
 
-		ModelMap modelo = new ModelMap();
-	
-		modelo.put("ordenMenorPrecio", servicioFiltros.OrdenarPorMenorPrecio());
-		return new ModelAndView("reserva-lista-autos", modelo);
-	}
+
+
+
 	
 	@PostMapping("/reservar-auto")
 	public ModelAndView reservarAuto(

@@ -9,28 +9,19 @@
 		<div class = "container">
 			<h1>Entregas de Vehiculos</h1>
 			
-			<table class="table table-bordered">
-							<thead>
-								<tr>
-									Id Reserva:<th scope="col">${reserva.id}</th>
-									<br>
-									<!-- Mostar mas datos del vehiculo -->
-							
-								</tr>
-							</thead>
-							<tbody>
-
-							<form action="entregar-auto" method="POST">
-								<input name="reservaId" value="${reserva.id}" type="hidden"/>
+			
+			<h1>Id Reserva: ${reservaId}</h1>
+			
+			<!-- Mostar mas datos del vehiculo -->
+			
+			<form action="entregar-auto" method="POST">
+								<input name="reservaId" value="${reservaId}" type="hidden"/>
 								Ingresar Kilometros Actuales del vehiculo
 								<br>
 								Kms:<input name="kilometrajeActual" required="required" type="number" />
 								<button class="btn btn-lg btn-primary btn-block" type="submit">Entregar</button>
-							</form>
-								
-								
-							</tbody>
-							</table>
+			</form>
+			
 			
 		</div>
 		<!-- Placed at the end of the document so the pages load faster -->

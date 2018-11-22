@@ -17,6 +17,7 @@ public class Auto {
 
 	private Double precio;
 	private Double puntajePromedio;
+	private Long kilometrajeActual;
 
 	public Long getId() {
 		return id;
@@ -42,11 +43,19 @@ public class Auto {
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
+	
 	public Double getPuntajePromedio() {
 		return puntajePromedio;
 	}
 	public void setPuntajePromedio(Double puntajePromedio) {
 		this.puntajePromedio = puntajePromedio;
+	}
+
+	public Long getKilometrajeActual() {
+		return kilometrajeActual;
+	}
+	public void setKilometrajeActual(Long kilometrajeActual) {
+		this.kilometrajeActual = kilometrajeActual;
 	}
 
 }

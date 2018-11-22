@@ -63,7 +63,15 @@ public class ServicioDevolucionImpl implements ServicioDevolucion {
 		}else {
 			//Precio extra al pasarse la fecha de entrega.
 			//System.out.println("fechaHasta is before fechaActual");
-			Double precioExtra= 1500D;
+			
+			
+			int dias=(int) ((fechaActual.getTime()-fechaHasta.getTime())/86400000);
+			
+			Double precioExtraPorDia = 800D;
+			
+			Double precioExtra = dias * precioExtraPorDia;
+			
+			//Double precioExtra= 1500D;
 			devolucion.setPrecioExtra(precioExtra);
 		}
 

@@ -69,6 +69,7 @@
 											<form action="reservar-auto" method="POST">
 												<input name="fechaDesde" value="${busqueda.fechaDesde}" type="hidden" /> 
 												<input name="fechaHasta" value="${busqueda.fechaHasta}" type="hidden" /> 
+												<input name="tipoContrato" value="${tipoContrato}" type="hidden" /> 
 												<input name="autoId" value="${auto.id}" type="hidden" />
 												<button class="btn btn-lg btn-primary btn-block"
 													type="submit">Reservar</button>

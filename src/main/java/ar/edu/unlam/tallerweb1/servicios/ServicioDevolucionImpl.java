@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.DevolucionDao;
+import ar.edu.unlam.tallerweb1.modelo.Auto;
 import ar.edu.unlam.tallerweb1.modelo.Devolucion;
-import ar.edu.unlam.tallerweb1.modelo.Entrega;
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
 
 
@@ -24,8 +24,8 @@ public class ServicioDevolucionImpl implements ServicioDevolucion {
 	@Inject
 	private ServicioReserva servicioReserva;
 	
-	@Inject
-	private ServicioEntrega servicioEntrega;
+	/*@Inject
+	private ServicioEntrega servicioEntrega;*/
 
 	@Override
 	public List<Reserva> obtenerReservasEntregadas() {
@@ -33,7 +33,7 @@ public class ServicioDevolucionImpl implements ServicioDevolucion {
 	}
 	
 	@Override
-	public Long devolverAuto(Long reservaId) {
+	public Long devolverAuto(Long reservaId, Long kilometrajeDevolucion) {
 		Devolucion devolucion = new Devolucion();
 		
 		Date date = new Date();
@@ -50,24 +50,48 @@ public class ServicioDevolucionImpl implements ServicioDevolucion {
 		Date fechaHasta = reserva.getFechaHasta();
 		Date fechaActual = new java.sql.Date(date.getTime());
 		
-		//TODO: Hacer Por cada dia extra se le cobrara mas monto y no uno fijo solamente
-		if(fechaHasta.compareTo(fechaActual)>0 ) {
-			//System.out.println("fechaHasta is after fechaActual");
-			Double precioExtra= 0D;
-			devolucion.setPrecioExtra(precioExtra);
-		}else {
-			//Precio extra al pasarse la fecha de entrega.
-			//System.out.println("fechaHasta is before fechaActual");
+		String tipoContrato = reserva.getTipoContrato();
+		
+		Auto auto = reserva.getAuto();
+		
+		Long kilometrajeActual = auto.getKilometrajeActual();
+		
+		if(tipoContrato == "dia") {
+			
+			//TODO: Hacer Por cada dia extra se le cobrara mas monto y no uno fijo solamente
+			if(fechaHasta.compareTo(fechaActual)>0 ) {
+				//System.out.println("fechaHasta is after fechaActual");
+				Double precioExtra= 0D;
+				devolucion.setPrecioExtra(precioExtra);
+			}else {
+				//Precio extra al pasarse la fecha de entrega.
+				//System.out.println("fechaHasta is before fechaActual");
+				
+				
+				int dias=(int) ((fechaActual.getTime()-fechaHasta.getTime())/86400000);
+				
+				Double precioExtraPorDia = 800D;
+				
+				Double precioExtra = dias * precioExtraPorDia;
+				
+				//Double precioExtra= 1500D;
+				devolucion.setPrecioExtra(precioExtra);
+				
+				Long kmDiferencia = kilometrajeDevolucion - kilometrajeActual;
+				
+				auto.setKilometrajeActual(kmDiferencia);
+			}
+		}if(tipoContrato == "km") {
+			//km actual - km devolucion  *  porcentaje
 			
 			
-			int dias=(int) ((fechaActual.getTime()-fechaHasta.getTime())/86400000);
+			Long kmDiferencia = kilometrajeDevolucion - kilometrajeActual;
 			
-			Double precioExtraPorDia = 800D;
+			Double precioExtraPorKm = kmDiferencia * 20D; 
 			
-			Double precioExtra = dias * precioExtraPorDia;
+			devolucion.setPrecioExtra(precioExtraPorKm);
 			
-			//Double precioExtra= 1500D;
-			devolucion.setPrecioExtra(precioExtra);
+			auto.setKilometrajeActual(kmDiferencia);
 		}
 
 		return devolucionDao.devolverAuto(devolucion);

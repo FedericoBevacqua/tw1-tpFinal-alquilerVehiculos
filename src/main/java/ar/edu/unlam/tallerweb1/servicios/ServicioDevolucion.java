@@ -9,7 +9,7 @@ import ar.edu.unlam.tallerweb1.modelo.Reserva;
 public interface ServicioDevolucion {
 	List<Reserva> obtenerReservasEntregadas();
 	
-	Long devolverAuto(Long devolucionId); 
+	Long devolverAuto(Long devolucionId, Long kilometrajeDevolucion); 
 	
 	Devolucion obtenerDevolucion(Long id);
 }

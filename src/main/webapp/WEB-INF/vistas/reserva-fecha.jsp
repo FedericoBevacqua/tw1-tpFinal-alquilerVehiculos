@@ -9,9 +9,27 @@
 	<body>
 		<div class="container">
 
+		<br>
+		Descripcion Precios:
+		<br>
+		Por Dia: $800 
+		<br>
+		Por Km: $20
+		<br>
+
 		<form:form action="reserva-lista-autos" method="POST" modelAttribute="busqueda">
 	    	<h3 class="form-signin-heading">Reservar Auto</h3>
 			<hr class="colorgraph"/><br>		  
+			
+			Tipo Contrato:
+			<br>
+			<input type="radio" name="tipoContrato" value="km" required="required">Por Kilometraje<br>
+			<input type="radio" name="tipoContrato" value="dia" required="required">Por día<br>
+
+			<!--
+			<input type="checkbox" name="porKm" >Por Kilometraje<br>
+			<input type="checkbox" name="porDia" >Por día<br>
+			-->
 			
 			<div class="form-group">
 			Fecha desde: <form:input id="fechaDesde" path="fechaDesde" required="required" type="date" class="form-control"/>

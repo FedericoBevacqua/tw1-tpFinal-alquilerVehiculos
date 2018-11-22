@@ -9,7 +9,7 @@ import ar.edu.unlam.tallerweb1.modelo.Reserva;
 public interface ServicioEntrega {
 	List<Reserva> obtenerReservasPendientes();
 	
-	Long entregarAuto(Long reservaId); 
+	Long entregarAuto(Long reservaId, Long kilometrajeActual); 
 	
 	Entrega obtenerEntrega(Long reservaId);
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.EntregaDao;
+import ar.edu.unlam.tallerweb1.modelo.Auto;
 import ar.edu.unlam.tallerweb1.modelo.Entrega;
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
 
@@ -22,6 +23,9 @@ public class ServicioEntregaImpl implements ServicioEntrega {
 	
 	@Inject
 	private ServicioReserva servicioReserva;
+	
+	/*@Inject
+	private ServicioAuto servicioAuto;*/
 
 	@Override
 	public List<Reserva> obtenerReservasPendientes() {
@@ -29,7 +33,7 @@ public class ServicioEntregaImpl implements ServicioEntrega {
 	}
 	
 	@Override
-	public Long entregarAuto(Long reservaId) {
+	public Long entregarAuto(Long reservaId, Long kilometrajeActual) {
 		Entrega entrega = new Entrega();
 		
 		Date date = new Date();
@@ -38,6 +42,17 @@ public class ServicioEntregaImpl implements ServicioEntrega {
 		Reserva reserva = servicioReserva.obtenerReserva(reservaId);
 		entrega.setReserva(reserva);
 		
+		
+		Auto auto = reserva.getAuto();
+		auto.setKilometrajeActual(kilometrajeActual);
+		
+		/*
+		Auto auto2 = reserva.getAuto();
+		Long idAuto = auto2.getId();
+		
+		Auto auto = servicioAuto.obtenerAuto(idAuto);
+		auto.setKilometrajeActual(kilometrajeActual);
+		*/
 		return entregaDao.entregarAuto(entrega);
 	}
 

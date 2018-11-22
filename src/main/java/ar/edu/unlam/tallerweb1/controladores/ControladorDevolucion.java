@@ -7,10 +7,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Devolucion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioAuto;
 import ar.edu.unlam.tallerweb1.servicios.ServicioDevolucion;
 
 @Controller
@@ -18,6 +20,9 @@ public class ControladorDevolucion {
 	
 	@Inject
 	private ServicioDevolucion servicioDevolucion;
+	
+	@Inject
+	private ServicioAuto servicioAuto;
 	
 	@GetMapping("/devolucion-lista-reservas")
 	public ModelAndView irAEntregaListaAutos() {
@@ -47,7 +52,7 @@ public class ControladorDevolucion {
 		Devolucion devolucion = servicioDevolucion.obtenerDevolucion(devolucionId);
 		Double precioExtra = devolucion.getPrecioExtra();
 		
-		
+		modelo.put("reservaId", reservaId);
 		modelo.put("devolucionId", devolucionId);
 		
 		modelo.put("precioExtra",precioExtra);
@@ -56,4 +61,13 @@ public class ControladorDevolucion {
 		// y se envian los datos a la misma  dentro del modelo
 		return new ModelAndView("devolucion-resultado", modelo);
 	}
+	
+	@GetMapping("/puntuar-auto")
+	public ModelAndView puntuarAuto(@RequestParam("reservaId")Long reservaId, @RequestParam("puntos") Long puntos) {
+		//El calculo de promedio se hace en el servicio
+		servicioDevolucion.puntuarAuto(reservaId, puntos);		
+
+		return new ModelAndView("resultado-puntuacion");
+	}
+
 }

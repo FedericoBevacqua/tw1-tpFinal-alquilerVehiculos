@@ -22,5 +22,17 @@ public class AutoDaoImpl implements AutoDao {
 				.add(Restrictions.eq("id", id))
 				.uniqueResult();
 	}
+	
+	@Override
+	public void guardarNuevoAuto(Auto auto) {
+		final Session session = sessionFactory.getCurrentSession();		
+		session.saveOrUpdate(auto);
+	}
+	
+	@Override
+	public void guardarAuto(Auto auto) {
+		final Session session = sessionFactory.getCurrentSession();		
+		session.update(auto);
+	}
 
 }

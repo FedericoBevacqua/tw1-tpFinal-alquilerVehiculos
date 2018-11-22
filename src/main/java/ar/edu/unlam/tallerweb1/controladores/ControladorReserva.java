@@ -32,6 +32,7 @@ public class ControladorReserva {
 	@PostMapping(path = "/reserva-lista-autos")
 	public ModelAndView irAReservaListaAutos(
 			@ModelAttribute("busqueda") Busqueda busqueda,
+			@RequestParam("tipoContrato") String tipoContrato,
 			@RequestParam(defaultValue = "false") boolean Ford,
 			@RequestParam(defaultValue = "false") boolean Chevrolet,
 			@RequestParam(defaultValue = "false") boolean Toyota,
@@ -71,6 +72,8 @@ public class ControladorReserva {
 	
 		modelo.put("busqueda", busqueda);
 		
+		modelo.put("tipoContrato", tipoContrato);
+		
 		modelo.put("autosDisponibles", servicioReserva.obtenerAutosDisponibles(busqueda.getFechaDesde(), busqueda.getFechaHasta()));
 		return new ModelAndView("reserva-lista-autos", modelo);
 	}
@@ -79,6 +82,7 @@ public class ControladorReserva {
 	public ModelAndView reservarAuto(
 			@RequestParam("fechaDesde") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaDesde,
 			@RequestParam("fechaHasta") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaHasta,
+			@RequestParam("tipoContrato") String tipoContrato,
 			@RequestParam("autoId") Long autoId) {
 
 		ModelMap modelo = new ModelMap();
@@ -88,7 +92,7 @@ public class ControladorReserva {
 		Usuario usuario = new Usuario();
 		modelo.put("usuario", usuario);
 		
-		Long reservaId = servicioReserva.reservarAuto(fechaDesde, fechaHasta, autoId);
+		Long reservaId = servicioReserva.reservarAuto(fechaDesde, fechaHasta, autoId, tipoContrato);
 		
 		modelo.put("reservaId", reservaId);
 		// Se va a la vista login (el nombre completo de la lista se resuelve utilizando el view resolver definido en el archivo spring-servlet.xml)

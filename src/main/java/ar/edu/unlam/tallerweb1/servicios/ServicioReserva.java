@@ -9,7 +9,7 @@ import ar.edu.unlam.tallerweb1.modelo.Reserva;
 public interface ServicioReserva {
 	List<Auto> obtenerAutosDisponibles(Date fechaDesde, Date fechaHasta);
 
-	Long reservarAuto(Date fechaDesde, Date fechaHasta, Long autoId);
+	Long reservarAuto(Date fechaDesde, Date fechaHasta, Long autoId,String tipoContrato);
 	
 	Reserva obtenerReserva(Long id);
 

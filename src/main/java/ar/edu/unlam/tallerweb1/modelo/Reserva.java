@@ -26,6 +26,8 @@ public class Reserva {
 	
 	private Long puntaje;
 
+	private String tipoContrato;
+
 	public Auto getAuto() {
 		return auto;
 	}
@@ -65,6 +67,7 @@ public class Reserva {
 	public void setFechaHasta(Date fechaHasta) {
 		this.fechaHasta = fechaHasta;
 	}
+	
 	public Long getPuntaje() {
 		return puntaje;
 	}
@@ -72,4 +75,13 @@ public class Reserva {
 	public void setPuntaje(Long puntaje) {
 		this.puntaje = puntaje;
 	}
+
+	public String getTipoContrato() {
+		return tipoContrato;
+	}
+
+	public void setTipoContrato(String tipoContrato) {
+		this.tipoContrato = tipoContrato;
+	}
+	
 }

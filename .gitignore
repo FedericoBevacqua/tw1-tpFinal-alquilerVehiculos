@@ -43,4 +43,4 @@ local.properties
 # Code Recommenders
 .recommenders/
 /target/
-src/main/resources/hibernateContext.xml
+

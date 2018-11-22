@@ -8,4 +8,5 @@ public interface ServicioFiltros {
 	
 	List<Auto> filtroPorMarca(String marca);
 	List<Auto> OrdenarPorMenorPrecio();
+	List<Auto> OrdenarPorMayorPrecio();
 }

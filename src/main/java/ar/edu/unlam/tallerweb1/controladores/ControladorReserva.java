@@ -30,40 +30,51 @@ public class ControladorReserva {
 	}
 	
 	@PostMapping(path = "/reserva-lista-autos")
-	public ModelAndView irAReservaListaAutos(@ModelAttribute("busqueda") Busqueda busqueda ) {
-
-		ModelMap modelo = new ModelMap();
+	public ModelAndView irAReservaListaAutos(
+			@ModelAttribute("busqueda") Busqueda busqueda,
+			@RequestParam(defaultValue = "false") boolean Ford,
+			@RequestParam(defaultValue = "false") boolean Chevrolet,
+			@RequestParam(defaultValue = "false") boolean Toyota,
+			@RequestParam(defaultValue = "false") boolean menorPrecio,
+			@RequestParam(defaultValue = "false") boolean mayorPrecio){
+			
+			ModelMap modelo = new ModelMap();
+		if (Ford) {
+	  
+			{modelo.put("autosDisponibles",servicioFiltros.filtroPorMarca("ford"));}
+			return new ModelAndView("reserva-lista-autos", modelo);
+	    }
+		
+		if (Chevrolet) {
+	    
+			{modelo.put("autosDisponibles",servicioFiltros.filtroPorMarca("chevrolet"));}
+			return new ModelAndView("reserva-lista-autos", modelo);
+	    }
+		
+		if (Toyota) {
+	      
+			{modelo.put("autosDisponibles",servicioFiltros.filtroPorMarca("toyota"));}
+			return new ModelAndView("reserva-lista-autos", modelo);
+	    }
+		
+		if (menorPrecio) {
+	    
+			{modelo.put("autosDisponibles", servicioFiltros.OrdenarPorMenorPrecio());}
+			return new ModelAndView("reserva-lista-autos", modelo);
+	    }
+		
+		if (mayorPrecio) {
+		    
+			{modelo.put("autosDisponibles", servicioFiltros.OrdenarPorMayorPrecio());}
+			return new ModelAndView("reserva-lista-autos", modelo);
+	    }
+	
 		modelo.put("busqueda", busqueda);
 		
 		modelo.put("autosDisponibles", servicioReserva.obtenerAutosDisponibles(busqueda.getFechaDesde(), busqueda.getFechaHasta()));
 		return new ModelAndView("reserva-lista-autos", modelo);
 	}
-	
-	@GetMapping(path = "/reserva-lista-autos")
-	public ModelAndView irAReservaListaAutos(
-			@RequestParam(value="marca",required=false) String marca,
-			@RequestParam(value="orden", defaultValue ="0"  ,required=false) Integer orden)  {
 
-		ModelMap modelo = new ModelMap();
-	
-		if(marca!=null)
-		{modelo.put("autosDisponibles",servicioFiltros.filtroPorMarca(marca));}
-		if(orden==1)
-		{
-	
-		modelo.put("autosDisponibles", servicioFiltros.OrdenarPorMenorPrecio());
-		
-		}
-		
-		return new ModelAndView("reserva-lista-autos", modelo);
-	
-	}
-	
-
-
-
-
-	
 	@PostMapping("/reservar-auto")
 	public ModelAndView reservarAuto(
 			@RequestParam("fechaDesde") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaDesde,

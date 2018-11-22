@@ -37,4 +37,13 @@ public class FiltrosDaoImpl implements FiltrosDao{
 		return menorPrecio ;
 	}
 
+	@Override
+	public List<Auto> OrdenarPorMayorPrecio() {
+		final Session session = sessionFactory.getCurrentSession();
+		List<Auto> mayorPrecio=session.createCriteria(Auto.class)
+				.addOrder(Order.desc("precio"))
+				.list();
+		return mayorPrecio ;
+	}
+
 }

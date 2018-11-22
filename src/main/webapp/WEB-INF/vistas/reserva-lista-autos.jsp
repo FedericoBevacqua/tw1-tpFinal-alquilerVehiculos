@@ -18,18 +18,30 @@
 		<div class="row">
 			<div class="col-sm-4">
 			
-
-
-			
-				<a class="btn btn-link" href="reserva-lista-autos?marca=Ford" role="button">Ford</a><br>
-				<a class="btn btn-link" href="reserva-lista-autos?marca=Chevrolet" role="button">Chevrolet</a><br>
-				<a class="btn btn-link" href="reserva-lista-autos?marca=Toyota" role="button">Toyota</a><br>
-				<a class="btn btn-link" href="reserva-lista-autos?marca=Audi" role="button">Audi</a><br>
-				<a class="btn btn-link" href="reserva-lista-autos?marca=BMW" role="button">BMW</a><br>
-				<br> <a class="btn btn-link" href="reserva-lista-autos?orden=1" role="button">Por menor precio</a><br><br>
+			<form action="reserva-lista-autos" method="POST">
+												<input name="fechaDesde" value="${busqueda.fechaDesde}" type="hidden" /> 
+												<input name="fechaHasta" value="${busqueda.fechaHasta}" type="hidden" /> 
+												
+												<input type="checkbox" name="Ford" >Ford<br>
+												<input type="checkbox" name="Chevrolet" >Chevrolet<br>
+												<input type="checkbox" name="Toyota">Toyota<br>
+												
+												<br> Ordenar por :<br>
+													<input type="checkbox" name="menorPrecio" >Menor Precio<br>
+													<input type="checkbox" name="mayorPrecio" >Mayor Precio<br><br>
+														<div class="col-sm-6">
+														<button class="btn btn-lg btn-primary btn-block"
+													
+													
+											
+													type="submit">Filtrar</button><br><br>
+														<button class="btn btn-lg btn-primary btn-block"
+													type="submit">Borrar Filtros</button><br>
+													</div>
+											</form>
+		
 					
-					<a class="btn btn-link" href="reserva-lista-autos"
-					role="button">Borrar filtros</a><br>
+					
 			</div>
 
 			<div>

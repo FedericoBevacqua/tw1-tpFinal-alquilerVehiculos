@@ -29,9 +29,30 @@ public class ControladorDevolucion {
 		return new ModelAndView("devolucion-lista-reservas", modelo);
 	}
 	
+	
+	@PostMapping("/devolucion-km-auto")
+	public ModelAndView irADevolucionAutoKm(
+			@RequestParam("reservaId") Long reservaId) {
+	
+		ModelMap modelo = new ModelMap();
+		// Se agrega al modelo un objeto del tipo Usuario con key 'usuario' para que el mismo sea asociado
+		// al model attribute del form que esta definido en la vista 'login'
+		//TODO: Corregir cuando este correcto el login
+		Usuario usuario = new Usuario();
+		
+		modelo.put("usuario", usuario);
+		
+		modelo.put("reservaId", reservaId);
+		
+		// Se va a la vista login (el nombre completo de la lista se resuelve utilizando el view resolver definido en el archivo spring-servlet.xml)
+				// y se envian los datos a la misma  dentro del modelo
+		return new ModelAndView("devolucion-km-auto", modelo);
+	}
+	
 	@PostMapping("/devolver-auto")
 	public ModelAndView devolverAuto(
-			@RequestParam("reservaId") Long reservaId) {
+			@RequestParam("reservaId") Long reservaId,
+			@RequestParam("kilometrajeDevolucion") Long kilometrajeDevolucion) {
 
 		ModelMap modelo = new ModelMap();
 		// Se agrega al modelo un objeto del tipo Usuario con key 'usuario' para que el mismo sea asociado
@@ -41,7 +62,7 @@ public class ControladorDevolucion {
 		
 		modelo.put("usuario", usuario);
 		
-		Long devolucionId = servicioDevolucion.devolverAuto(reservaId);
+		Long devolucionId = servicioDevolucion.devolverAuto(reservaId,kilometrajeDevolucion);
 		
 		//TODO: Verificar Obtener precioExtra Devolucion
 		Devolucion devolucion = servicioDevolucion.obtenerDevolucion(devolucionId);

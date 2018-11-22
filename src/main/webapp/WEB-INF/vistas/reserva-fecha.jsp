@@ -12,9 +12,9 @@
 		<br>
 		Descripcion Precios:
 		<br>
-		Por Dia: 
+		Por Dia: $800 
 		<br>
-		Por Km:
+		Por Km: $20
 		<br>
 
 		<form:form action="reserva-lista-autos" method="POST" modelAttribute="busqueda">

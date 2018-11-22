@@ -8,9 +8,11 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.unlam.tallerweb1.dao.AutoDao;
 import ar.edu.unlam.tallerweb1.dao.DevolucionDao;
+import ar.edu.unlam.tallerweb1.dao.ReservaDao;
+import ar.edu.unlam.tallerweb1.modelo.Auto;
 import ar.edu.unlam.tallerweb1.modelo.Devolucion;
-import ar.edu.unlam.tallerweb1.modelo.Entrega;
 import ar.edu.unlam.tallerweb1.modelo.Reserva;
 
 
@@ -22,10 +24,13 @@ public class ServicioDevolucionImpl implements ServicioDevolucion {
 	private DevolucionDao devolucionDao;
 	
 	@Inject
-	private ServicioReserva servicioReserva;
+	private ReservaDao reservaDao;
 	
 	@Inject
-	private ServicioEntrega servicioEntrega;
+	private AutoDao autoDao;
+	
+	@Inject
+	private ServicioReserva servicioReserva;
 
 	@Override
 	public List<Reserva> obtenerReservasEntregadas() {
@@ -76,5 +81,27 @@ public class ServicioDevolucionImpl implements ServicioDevolucion {
 	@Override
 	public Devolucion obtenerDevolucion(Long id) {
 		return devolucionDao.obtenerDevolucion(id);
+	}
+	
+	@Override
+	public void puntuarAuto(Long id, Long puntos) {
+		//Inicializo objetos
+		Reserva reserva = reservaDao.obtenerReserva(id);
+		Auto auto = reserva.getAuto();
+		Double puntajePromedioActual = auto.getPuntajePromedio();
+		
+		//Seteo puntaje a la reserva
+		reserva.setPuntaje(puntos);
+		
+		//Calculo promedio y seteo al auto de la reserva
+		Double puntajeActualizado = puntajePromedioActual + puntos.doubleValue();
+		puntajeActualizado = puntajeActualizado / 2.0;
+		auto.setPuntajePromedio(puntajeActualizado);
+		
+		//Guardo objetos actualizados
+		reservaDao.actualizarDatosReserva(reserva);
+		autoDao.guardarAuto(auto);
+		
+		return;
 	}
 }

@@ -44,6 +44,13 @@ public class ReservaDaoImpl implements ReservaDao {
         final Session session = sessionFactory.getCurrentSession();
         return (Long) session.save(reserva);
     }
+    
+    //En principio, uso este metodo para agregar el puntaje de la reserva, pero puede tener otros usos
+    @Override
+    public void actualizarDatosReserva(Reserva reserva) {
+    	final Session session = sessionFactory.getCurrentSession();
+    	session.update(reserva);
+    }
 
 	@Override
 	public Reserva obtenerReserva(Long id) {

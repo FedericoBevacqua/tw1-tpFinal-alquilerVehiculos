@@ -19,5 +19,14 @@ public class ServicioAutoImpl implements ServicioAuto {
 	public Auto obtenerAuto(Long id) {
 		return autoDao.obtenerAuto(id);
 	}
+	
+	@Override
+	public Auto actualizarPuntajePromedio(Long id, Double puntajeActual) {
+		Auto auto = autoDao.obtenerAuto(id);
+		
+		auto.setPuntajePromedio(puntajeActual);
+		
+		return auto;
+	}
 
 }

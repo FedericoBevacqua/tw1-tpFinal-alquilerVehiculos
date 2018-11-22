@@ -44,5 +44,4 @@ public class ServicioReservaImpl implements ServicioReserva {
 	public Reserva obtenerReserva(Long id) {
 		return reservaDao.obtenerReserva(id);
 	}
-
 }

@@ -12,4 +12,5 @@ public interface ServicioReserva {
 	Long reservarAuto(Date fechaDesde, Date fechaHasta, Long autoId);
 	
 	Reserva obtenerReserva(Long id);
+
 }

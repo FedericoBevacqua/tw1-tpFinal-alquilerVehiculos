@@ -29,10 +29,11 @@ public class ServicioReservaImpl implements ServicioReserva {
 	}
 
 	@Override
-	public Long reservarAuto(Date fechaDesde, Date fechaHasta, Long autoId) {
+	public Long reservarAuto(Date fechaDesde, Date fechaHasta, Long autoId, String tipoContrato) {
 		Reserva reserva = new Reserva();
 		reserva.setFechaDesde(fechaDesde);
 		reserva.setFechaHasta(fechaHasta);
+		reserva.setTipoContrato(tipoContrato);
 	
 		Auto auto = servicioAuto.obtenerAuto(autoId);
 		reserva.setAuto(auto);

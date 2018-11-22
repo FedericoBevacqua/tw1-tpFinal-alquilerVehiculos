@@ -23,6 +23,8 @@ public class Reserva {
 	
 	private Date fechaDesde;
 	private Date fechaHasta;
+	
+	private String tipoContrato;
 
 	public Auto getAuto() {
 		return auto;
@@ -62,6 +64,14 @@ public class Reserva {
 
 	public void setFechaHasta(Date fechaHasta) {
 		this.fechaHasta = fechaHasta;
+	}
+
+	public String getTipoContrato() {
+		return tipoContrato;
+	}
+
+	public void setTipoContrato(String tipoContrato) {
+		this.tipoContrato = tipoContrato;
 	}
 	
 }

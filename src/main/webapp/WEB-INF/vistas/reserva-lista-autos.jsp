@@ -23,7 +23,7 @@
 												<input name="fechaHasta" value="${busqueda.fechaHasta}" type="hidden" /> 
 												<input name="tipoContrato" value="${tipoContrato}" type="hidden" /> 
 												
-												<input type="checkbox" checked="${checked}" name="Ford" >Ford<br>
+												<input type="checkbox" name="Ford" >Ford<br>
 												<input type="checkbox" name="Chevrolet" >Chevrolet<br>
 												<input type="checkbox" name="Toyota">Toyota<br>
 												

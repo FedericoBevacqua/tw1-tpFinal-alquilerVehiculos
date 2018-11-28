@@ -40,11 +40,11 @@ public class ControladorReserva {
 			@RequestParam(defaultValue = "false") boolean mayorPrecio){
 			
 			ModelMap modelo = new ModelMap();
-		if (Ford) {
+		/*if (Ford) {
 	  
 			{modelo.put("autosDisponibles",servicioFiltros.filtroPorMarca("ford"));}
 			return new ModelAndView("reserva-lista-autos", modelo);
-	    }
+	    }*/
 		
 		if (Chevrolet) {
 	    

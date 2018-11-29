@@ -12,6 +12,11 @@ SELECT * FROM db.usuario;
 
 /*Inserts*/
 
+/*Tabla: Usuarios*/
+INSERT INTO `db`.`usuario` (`id`, `email`, `password`, `rol`) 
+VALUES ('1', 'admin@admin', '123456', 'admin'),
+('2', 'admin@admin.com', '123456', 'admin');
+
 /*Tabla: Auto*/
 INSERT INTO `db`.`auto` (`id`, `marca`, `nombre`, `precio`) 
 VALUES ('1', 'Ford', 'Fiesta', '1800'),

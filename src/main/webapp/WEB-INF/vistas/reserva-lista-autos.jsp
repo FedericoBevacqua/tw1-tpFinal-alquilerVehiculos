@@ -54,6 +54,7 @@
 									<th scope="col">Marca</th>
 									<th scope="col">Nombre</th>
 									<th scope="col">Precio</th>
+									<th scope="col">Puntaje</th>
 									<th scope="col">Reservar</th>
 
 								</tr>
@@ -66,6 +67,7 @@
 										<td><c:out value="${auto.marca}" /></td>
 										<td><c:out value="${auto.nombre}" /></td>
 										<td><c:out value="${auto.precio}" /></td>
+										<td><c:out value="${auto.puntajePromedio} / 5" /></td>
 										<td>
 											<form action="reservar-auto" method="POST">
 												<input name="fechaDesde" value="${busqueda.fechaDesde}" type="hidden" /> 

@@ -66,7 +66,7 @@ public class ServicioDevolucionImpl implements ServicioDevolucion {
 		
 		Long kilometrajeActual = auto.getKilometrajeActual();
 		
-		if(tipoContrato == "dia") {
+		if(tipoContrato.equalsIgnoreCase("dia")) {
 			
 			//TODO: Hacer Por cada dia extra se le cobrara mas monto y no uno fijo solamente
 			if(fechaHasta.compareTo(fechaActual)>0 ) {
@@ -91,7 +91,7 @@ public class ServicioDevolucionImpl implements ServicioDevolucion {
 				
 				auto.setKilometrajeActual(kmDiferencia);
 			}
-		}if(tipoContrato == "km") {
+		}if(tipoContrato.equalsIgnoreCase("km")) {
 			//km actual - km devolucion  *  porcentaje
 			
 			

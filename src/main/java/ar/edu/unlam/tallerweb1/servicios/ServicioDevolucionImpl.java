@@ -119,6 +119,10 @@ public class ServicioDevolucionImpl implements ServicioDevolucion {
 		Auto auto = reserva.getAuto();
 		Double puntajePromedioActual = auto.getPuntajePromedio();
 		
+		if(puntajePromedioActual == null) {
+			puntajePromedioActual = 0.0;
+		}
+		
 		//Seteo puntaje a la reserva
 		reserva.setPuntaje(puntos);
 		

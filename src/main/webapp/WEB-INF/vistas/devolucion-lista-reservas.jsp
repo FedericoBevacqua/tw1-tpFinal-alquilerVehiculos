@@ -29,7 +29,7 @@
 										<td><c:out value="${entrega.reserva.fechaHasta}" /></td>
 										<td><c:out value="${entrega.reserva.auto.id}" /></td>
 										<td>
-											<form action="devolver-auto" method="POST">
+											<form action="devolucion-km-auto" method="POST">
 												<input name="reservaId" value="${entrega.reserva.id}" type="hidden"/>
 												<button class="btn btn-lg btn-primary btn-block" type="submit">Devolver</button>
 											</form>

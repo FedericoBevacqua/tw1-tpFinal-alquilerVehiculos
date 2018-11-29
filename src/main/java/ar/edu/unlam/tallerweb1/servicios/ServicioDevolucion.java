@@ -12,4 +12,6 @@ public interface ServicioDevolucion {
 	Long devolverAuto(Long devolucionId, Long kilometrajeDevolucion); 
 	
 	Devolucion obtenerDevolucion(Long id);
+
+	void puntuarAuto(Long id, Long puntaje);
 }

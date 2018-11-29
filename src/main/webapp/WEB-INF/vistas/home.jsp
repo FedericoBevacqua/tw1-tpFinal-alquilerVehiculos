@@ -6,6 +6,12 @@
 	    <link href="css/bootstrap.min.css" rel="stylesheet" >
 	</head>
 	<body>
+	
+		<c:if test="${not empty mensaje}">
+			<div class="container">
+				<c:out value="${mensaje}"/>
+			</div>
+		</c:if>
 		<div class = "container">
 			<h1>Bienvenidos a ReservaTuAuto</h1>
 			

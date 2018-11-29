@@ -21,6 +21,7 @@
 			<form action="reserva-lista-autos" method="POST">
 												<input name="fechaDesde" value="${busqueda.fechaDesde}" type="hidden" /> 
 												<input name="fechaHasta" value="${busqueda.fechaHasta}" type="hidden" /> 
+												<input name="tipoContrato" value="${tipoContrato}" type="hidden" /> 
 												
 												<input type="checkbox" name="Ford" >Ford<br>
 												<input type="checkbox" name="Chevrolet" >Chevrolet<br>

@@ -14,5 +14,15 @@ public class ControladorHome {
 		ModelMap modelo = new ModelMap();
 		return new ModelAndView("home", modelo);
 	}
+	
+	
+	@GetMapping(path = "/mapa")
+	public ModelAndView mapa() {
+
+		ModelMap modelo = new ModelMap();
+	
+
+		return new ModelAndView("mapa", modelo);
+	}
 
 }

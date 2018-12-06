@@ -33,12 +33,13 @@ public class ReservaDaoImpl implements ReservaDao {
 
         List<Auto> autosDisponibles = session
                 .createCriteria(Auto.class)
-                .add(Property.forName("id").notIn(autosReservados))//Trae todos los autos y filtra que no esten en una reserva de las fechas pedidas anteriormente
+                .add(Property.forName("id").notIn(autosReservados))//Trae todos los autos y filtra que ID auto - no esten en una reserva de las fechas pedidas anteriormente ("autosReservados")
                 .list();
 
         return autosDisponibles;
     }
 
+    //ReservaAuto guardandolo en BD
     @Override
     public Long reservarAuto(Reserva reserva) {
         final Session session = sessionFactory.getCurrentSession();
@@ -52,6 +53,7 @@ public class ReservaDaoImpl implements ReservaDao {
     	session.update(reserva);
     }
 
+    //Obtener reserva por ID
 	@Override
 	public Reserva obtenerReserva(Long id) {
 		final Session session = sessionFactory.getCurrentSession();

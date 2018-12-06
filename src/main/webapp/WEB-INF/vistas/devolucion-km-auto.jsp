@@ -1,9 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="includes/top.jsp" />
-<title>Rent a Car - Entrega de Vehiculos</title>
+<title>Rent a Car - Devolucion de Vehiculos</title>
 		<div class = "container">
 			
-			<h3 class="form-signin-heading">Entregas de Vehiculos</h3>
+			<h3 class="form-signin-heading">Devolucion de Vehiculos</h3>
 			<hr class="colorgraph" />
 			
 			
@@ -11,12 +11,11 @@
 			
 			<!-- Mostar mas datos del vehiculo -->
 			
-			<form action="entregar-auto" method="POST">
+			<form action="devolver-auto" method="POST">
 								<input name="reservaId" value="${reservaId}" type="hidden"/>
-								Ingresar Kilometros Actuales del vehiculo
+								Ingresar Kilometros Actuales para la Devolucion del vehiculo
 								<br>
-								Kms:<input name="kilometrajeActual" required="required" type="number" />
-								<br>
+								Kms:<input name="kilometrajeDevolucion" required="required" type="number" />
 								<button class="btn btn-lg btn-primary btn-block" type="submit">Entregar</button>
 			</form>
 			

@@ -6,9 +6,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="icon" href="img/favicon.ico">
+		<link rel="icon" href="img/logo.ico">
 
-		<title>Iniciar Sesión</title>
+		<title>Rent a Car - Iniciar Sesión</title>
 
 		<!-- Bootstrap core CSS -->
 	    <link href="css/bootstrap.min.css" rel="stylesheet" >
@@ -22,7 +22,7 @@
 		<%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
 		<%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto --%>
 		<form:form action="validar-login" method="POST" modelAttribute="usuario" class="form-signin">
-			<img class="mb-4" src="img/logo.svg" alt="" width="72" height="72">
+			<img class="mb-4" src="img/logo.ico" alt="" width="72" height="72">
 			<h1 class="h3 mb-3 font-weight-normal">Por favor inicie sesión</h1>
 			<label for="email" class="sr-only">E-mail</label>
 			<%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>

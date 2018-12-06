@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<!-- Bootstrap core CSS -->
-	    <link href="css/bootstrap.min.css" rel="stylesheet" >
-	</head>
-	<body>
+<jsp:include page="includes/top.jsp" />
+<title>Rent a Car - Reserva Resultado</title>
 		<div class = "container">
-			<h1>Id Reserva: ${reservaId}</h1>
+			<h1>Ha reservado exitosamente el vehiculo! </h1>
+			<h3>Id Reserva: ${reservaId}</h3>
 			
 			<a class="btn btn-primary" role="button" href="${pageContext.request.contextPath}/home">Volver al Inicio</a>
 		</div>
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-		<script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
-	</body>
-</html>
+<jsp:include page="includes/bottom.jsp" />

@@ -1,13 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+<jsp:include page="includes/top.jsp" />
+<title>Rent a Car - Reservar Vehiculo</title>
 	<div class="container">
-		<h1></h1>
+		<h3 class="form-signin-heading">Reserva Lista Vehiculos</h3>
+		<hr class="colorgraph" />
 
 		<div>${busqueda.fechaDesde} - ${busqueda.fechaHasta}</div>
 		
@@ -88,8 +84,4 @@
 		</div>
 	</div>
 
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-	<script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
-</body>
-</html>
+<jsp:include page="includes/bottom.jsp" />

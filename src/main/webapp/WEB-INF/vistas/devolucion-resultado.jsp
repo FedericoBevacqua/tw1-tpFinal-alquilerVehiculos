@@ -1,4 +1,5 @@
 <jsp:include page="includes/top.jsp" />
+<title>Rent a Car - Devolucion Resultado</title>
 <jsp:include page="includes/modalPuntuacion.jsp" />
 		<div class = "container">
 			<h1>Id Devolucion: ${devolucionId}</h1>

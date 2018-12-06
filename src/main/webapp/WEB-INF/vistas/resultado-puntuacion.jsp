@@ -1,7 +1,8 @@
 <jsp:include page="includes/top.jsp" />
 <jsp:include page="includes/modalPuntuacion.jsp" />
+<title>Rent a Car - Resultado puntuación</title>
 		<div class = "container">
-			<h1>Ha puntuado exitosamente el vehiculo! </h1>
+			cc
 
 			
 			<div class="container">

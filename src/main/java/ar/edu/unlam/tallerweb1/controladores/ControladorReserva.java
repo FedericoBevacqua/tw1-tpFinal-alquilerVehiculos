@@ -99,5 +99,27 @@ public class ControladorReserva {
 		// y se envian los datos a la misma  dentro del modelo
 		return new ModelAndView("reserva-resultado", modelo);
 	}
+
+	@PostMapping("/reserva-pagar")
+	public ModelAndView reservaPagar(
+			@RequestParam("fechaDesde") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaDesde,
+			@RequestParam("fechaHasta") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaHasta,
+			@RequestParam("tipoContrato") String tipoContrato,
+			@RequestParam("importe") Double importe,
+			@RequestParam("autoId") Long autoId) {
+
+		ModelMap modelo = new ModelMap();
+
+		Usuario usuario = new Usuario();
+		modelo.put("usuario", usuario);
+
+		modelo.put("importe", importe);
+		modelo.put("fechaDesde", fechaDesde);
+		modelo.put("fechaHasta", fechaHasta);
+		modelo.put("tipoContrato", tipoContrato);
+		modelo.put("autoId", autoId);
+
+		return new ModelAndView("reserva-pagar", modelo);
+	}
 	
 }

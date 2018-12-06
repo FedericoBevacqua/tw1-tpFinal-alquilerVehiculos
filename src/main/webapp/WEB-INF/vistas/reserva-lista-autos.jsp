@@ -65,11 +65,12 @@
 										<td><c:out value="${auto.precio}" /></td>
 										<td><c:out value="${auto.puntajePromedio} / 5" /></td>
 										<td>
-											<form action="reservar-auto" method="POST">
+											<form action="reserva-pagar" method="POST">
 												<input name="fechaDesde" value="${busqueda.fechaDesde}" type="hidden" /> 
 												<input name="fechaHasta" value="${busqueda.fechaHasta}" type="hidden" /> 
 												<input name="tipoContrato" value="${tipoContrato}" type="hidden" /> 
 												<input name="autoId" value="${auto.id}" type="hidden" />
+												<input name="importe" value="${auto.precio}" type="hidden" />
 												<button class="btn btn-lg btn-primary btn-block"
 													type="submit">Reservar</button>
 											</form>

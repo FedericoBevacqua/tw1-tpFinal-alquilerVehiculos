@@ -32,20 +32,22 @@ public class ControladorReserva {
 	
 	@PostMapping(path = "/reserva-lista-autos")
 	public ModelAndView irAReservaListaAutos(
-			@ModelAttribute("busqueda") Busqueda busqueda,
+			@ModelAttribute("busqueda") Busqueda busqueda, //Objeto que contiene fechaDesde y fechaHasta - No se guarda en BD.
 			@RequestParam("tipoContrato") String tipoContrato,
-			@RequestParam(defaultValue = "false") boolean Ford,
+			@RequestParam(defaultValue = "false") boolean Ford, //Filtro si es True, entra al IF.
 			@RequestParam(defaultValue = "false") boolean Chevrolet,
 			@RequestParam(defaultValue = "false") boolean Toyota,
 			@RequestParam(defaultValue = "false") boolean menorPrecio,
 			@RequestParam(defaultValue = "false") boolean mayorPrecio){
 			
 			ModelMap modelo = new ModelMap();
-		/*if (Ford) {
+			
+		//Cada if hace un criteria que trae todos los autos de tales marca o precios
+		if (Ford) {
 	  
 			{modelo.put("autosDisponibles",servicioFiltros.filtroPorMarca("ford"));}
 			return new ModelAndView("reserva-lista-autos", modelo);
-	    }*/
+	    }
 		
 		if (Chevrolet) {
 	    
@@ -92,7 +94,7 @@ public class ControladorReserva {
 		//TODO: Corregir cuando este correcto el login
 		Usuario usuario = new Usuario();
 		modelo.put("usuario", usuario);
-		
+		//Utiliza servicio para reservar auto y guardar en la BD.
 		Long reservaId = servicioReserva.reservarAuto(fechaDesde, fechaHasta, autoId, tipoContrato);
 		
 		modelo.put("reservaId", reservaId);
@@ -100,7 +102,7 @@ public class ControladorReserva {
 		// y se envian los datos a la misma  dentro del modelo
 		return new ModelAndView("reserva-resultado", modelo);
 	}
-
+	//Paso anterior al pago en efectivo o mercadoPago
 	@PostMapping("/reserva-pagar")
 	public ModelAndView reservaPagar(
 			@RequestParam("fechaDesde") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaDesde,
@@ -122,10 +124,10 @@ public class ControladorReserva {
 
 		return new ModelAndView("reserva-pagar", modelo);
 	}
-
+	//Paso posterior al pago en efectivo o mercadoPago
 	@GetMapping("/procesar-pago")
 	public ModelAndView procesarPago(
-			@QueryParam("result") String result,
+			@QueryParam("result") String result, //String de mercadoPago success, failure o pending
 			@QueryParam("fechaDesde") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaDesde,
 			@QueryParam("fechaHasta") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaHasta,
 			@QueryParam("tipoContrato") String tipoContrato,
@@ -138,10 +140,12 @@ public class ControladorReserva {
 		Usuario usuario = new Usuario();
 		modelo.put("usuario", usuario);
 
+		//Muestra y valida el resultado de la operacion por mercadoPago
 		System.out.print("Resultado de la operacion: " + result);
 		if (result == null && fechaDesde == null || fechaHasta == null || tipoContrato == null || autoId == null) {
 			return new ModelAndView("redirect:/error-pago");
 		}
+		//Si lo valida lo de mercado pago o es en efectivo reserva el auto
 		Long reservaId = servicioReserva.reservarAuto(fechaDesde, fechaHasta, autoId, tipoContrato);
 
 		modelo.put("reservaId", reservaId);
@@ -149,7 +153,7 @@ public class ControladorReserva {
 		// y se envian los datos a la misma  dentro del modelo
 		return new ModelAndView("reserva-resultado", modelo);
 	}
-
+	//Si hay un error en la compra de mercadoPago redirecciona a vista error.
 	@GetMapping("error-pago")
 	public ModelAndView errorPago() {
 		return new ModelAndView("error-pago");

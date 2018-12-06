@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="icon" href="img/favicon.ico">
 
-		<title>Iniciar Sesión</title>
+		<title>Rent a Car - Iniciar Sesión</title>
 
 		<!-- Bootstrap core CSS -->
 	    <link href="css/bootstrap.min.css" rel="stylesheet" >

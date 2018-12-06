@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
+import javax.ws.rs.QueryParam;
 import java.util.Date;
 
 @Controller
@@ -80,8 +81,8 @@ public class ControladorReserva {
 
 	@PostMapping("/reservar-auto")
 	public ModelAndView reservarAuto(
-			@RequestParam("fechaDesde") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaDesde,
-			@RequestParam("fechaHasta") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaHasta,
+			@RequestParam("fechaDesde") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaDesde,
+			@RequestParam("fechaHasta") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaHasta,
 			@RequestParam("tipoContrato") String tipoContrato,
 			@RequestParam("autoId") Long autoId) {
 
@@ -120,6 +121,38 @@ public class ControladorReserva {
 		modelo.put("autoId", autoId);
 
 		return new ModelAndView("reserva-pagar", modelo);
+	}
+
+	@GetMapping("/procesar-pago")
+	public ModelAndView procesarPago(
+			@QueryParam("result") String result,
+			@QueryParam("fechaDesde") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaDesde,
+			@QueryParam("fechaHasta") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaHasta,
+			@QueryParam("tipoContrato") String tipoContrato,
+			@QueryParam("autoId") Long autoId) {
+
+		ModelMap modelo = new ModelMap();
+		// Se agrega al modelo un objeto del tipo Usuario con key 'usuario' para que el mismo sea asociado
+		// al model attribute del form que esta definido en la vista 'login'
+		//TODO: Corregir cuando este correcto el login
+		Usuario usuario = new Usuario();
+		modelo.put("usuario", usuario);
+
+		System.out.print("Resultado de la operacion: " + result);
+		if (result == null && fechaDesde == null || fechaHasta == null || tipoContrato == null || autoId == null) {
+			return new ModelAndView("redirect:/error-pago");
+		}
+		Long reservaId = servicioReserva.reservarAuto(fechaDesde, fechaHasta, autoId, tipoContrato);
+
+		modelo.put("reservaId", reservaId);
+		// Se va a la vista login (el nombre completo de la lista se resuelve utilizando el view resolver definido en el archivo spring-servlet.xml)
+		// y se envian los datos a la misma  dentro del modelo
+		return new ModelAndView("reserva-resultado", modelo);
+	}
+
+	@GetMapping("error-pago")
+	public ModelAndView errorPago() {
+		return new ModelAndView("error-pago");
 	}
 	
 }

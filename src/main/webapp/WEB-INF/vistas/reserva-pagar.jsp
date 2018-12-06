@@ -8,6 +8,9 @@
 
 <jsp:include page="includes/top.jsp" />
 
+<!-- Setea el user y pass del usuario vendedor de mercadoPago -->
+
+<!-- String de mercadoPago, setea Titulo de la venta, cantidad, tipo moneda, importe, tipo contrato y que ocurre en cada caso de exito, fallo o pendiente -->
 <%
 	MP mp = new MP("7466445635971939", "b2T9AcENUezVW34XoYyOWe4mO1Ow4M32");
 
